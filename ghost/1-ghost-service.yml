@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ghost
+  labels:
+    app: ghost
+spec:
+  selector:
+    app: ghost
+  type: LoadBalancer
+  loadBalancerIP: 130.211.126.76
+  # Google Container Engine running Kubernetes v1.1 supports loadBalancerIP just mark the auto-assigned IP as static first.
+  # http://serverfault.com/questions/705588/how-to-choose-the-external-ip-address-of-a-kubernetes-load-balancer-in-google-co
+  ports:
+  - port: 80 # service port
+    targetPort: ghost  # port on container
+    protocol: TCP

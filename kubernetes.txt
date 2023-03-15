@@ -1,0 +1,43 @@
+# set default zone
+gcloud config set compute/zone us-central1-b
+
+# list config
+gcloud config list
+
+# stand up a cluster
+gcloud container clusters create example-cluster
+
+# run a container - create a pod with the kubectl run command:
+kubectl run hello-node --image=gcr.io/google-samples/node-hello:1.0 --port=8080
+
+# expose the container:
+kubectl expose deployment hello-node --type="LoadBalancer"
+
+# get the external IP address for the for the hello-node app
+# (it may take a few minutes for the external IP address to become available).
+kubectl get service hello-node
+
+# view the app (replace EXTERNAL-IP with the external IP
+# address you obtained in the previous step).
+http://10.3.253.108:8080
+
+# delete any clusters you created:
+gcloud container clusters delete example-cluster
+
+
+# Connect to the cluster:
+# --------------------------------------
+
+# Configure kubectl command line access by running the following command:
+gcloud container clusters get-credentials cluster-1 \
+    --zone us-central1-b --project copper-freedom-144020
+
+# Then start a proxy to connect to the Kubernetes control plane:
+kubectl proxy
+
+# Then open the Dashboard interface by navigating to the following location in your browser:
+# http://localhost:8001/ui
+
+
+# Get a shell to the running Container:
+kubectl exec -it pod-name-1234 -- /bin/bash

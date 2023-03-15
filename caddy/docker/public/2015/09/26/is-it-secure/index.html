@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Dan Stroot &middot; Is it Secure?</title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="theme-color" content="#202020">
+
+  
+  <link rel="manifest" href="https://danstroot.com/manifest.json">
+
+  
+  <link rel="stylesheet" href="https://danstroot.com/css/styles.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+
+  
+  <link rel="icon" href="https://danstroot.com/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=152">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=120">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=76">
+  <link rel="apple-touch-icon-precomposed" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=60">
+
+  
+  
+  
+  
+
+  
+  
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-44765020', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+</head>
+
+<body class=" ">
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+
+
+    <div class="myface">
+      <a href="https://danstroot.com/">
+        <img src="https://danstroot.com/img/face_sm.jpg" srcset="https://danstroot.com/img/face_lg.jpg 2x" alt="Dan Stroot" height="150" width="150">
+        <i class="icon-home"></i>
+      </a>
+    </div>
+
+    <div class="sidebar-about">
+      <a href="https://danstroot.com/"><h1>Dan Stroot</h1></a>
+      <p class="lead">I love building things. Made in California. Family man, technologist and Hacker News aficionado. Eternally curious.</p>
+    </div>
+
+    <hr class="hr-sidebar">
+
+    
+
+    <a href="https://danstroot.com/about">About</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://danstroot.com/post">Archive</a>
+
+    <hr class="hr-sidebar">
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/dstroot"><span class="icon-github-square"></span></a>
+      <a href="https://www.linkedin.com/in/danstroot"><span class="icon-linkedin-square"></span></a>
+      <a href="https://www.facebook.com/dan.stroot"><span class="icon-facebook-square"></span></a>
+      <a href="https://twitter.com/danstroot"><span class="icon-twitter-square"></span></a>
+      
+      </li>
+    </ul>
+
+    
+
+    <p class="small">Copyright &copy; 2017</p>
+
+  </div>
+</div>
+
+
+  <div class="content container">
+    <div class="post">
+
+      <h1 class="post-title">Is it Secure?</h1>
+
+      
+      <span class="post-date">September 26, 2015 &middot; <span class="icon-clock-o"></span> 6 minute read &middot; <a href="https://danstroot.com/2015/09/26/is-it-secure/#disqus_thread">Comments</a>  
+      </span>
+
+      
+      <div class="post-content">
+      <p><img src="https://danstroot.com/img/SmartCarLock.png" alt="Security" /></p>
+
+<p><em>Q</em>: Is it secure? <br>
+<em>A</em>: No it is not. Security is never binary.</p>
+
+<p><em>Q</em>: OK, how secure is it? <br>
+<em>A</em>: It seems like you just asked that question.</p>
+
+<p><em>Q</em>: No, the first question was if it&rsquo;s secure, the second question was how secure is it. <br>
+<em>A</em>: Well now that wasn&rsquo;t even a question at all.</p>
+
+<p></p>
+
+<h3 id="there-is-no-such-thing-as-perfect-security">There is no such thing as perfect security</h3>
+
+<p>Most information security practitioners do a poor job explaining the relative nature of security.  Secure relative to what? A bot that looks for un-patched systems? A determined hacker? A nation-state?</p>
+
+<p>Security is a &ldquo;scale of difficulty&rdquo; – like mountain climbing. Everest was thought to be unclimbable until Sir Edmund Hillary did it.  Everest was finally tackled by a massive expedition with enormous resources. The 1953 expedition totaled over 400 people, including 362 porters, 20 Sherpa guides and 10,000 lbs of baggage.  It was analogous to a military assault.</p>
+
+<p>Given enough time and resources <strong>any</strong> security can be defeated.  The main goal of security is to raise the time and resources required to an unreasonable level.  But how do you really know how secure something is?</p>
+
+<p>Like mountain climbing, security can and should be rated/evaluated based on actual experience. Also like mountain climbing there are initial conditions that indicate a “tough climb” or an easy one.</p>
+
+<h3 id="conditions-for-high-security-levels">Conditions for high security levels</h3>
+
+<ol>
+<li><strong>The technology is widely deployed/adopted.</strong> Note that being widely deployed does NOT mean the technology is secure (Windows XP was widely deployed). It simply means that we are more likely to have lots of data about its security performance. The more opportunities and incentives for attack will give us more data, which increases our confidence of it&rsquo;s &ldquo;rating&rdquo;.</li>
+<li><strong>The technology or system is attacked frequently with great intensity.</strong> Ideally because of being widely deployed, it would be used is places that expose it to attack. Ideally those attacks are unrelenting.  This also increases our data about its security performance.</li>
+<li><strong>The technology is simple to install and configure.</strong> Many supposedly &ldquo;secure&rdquo; systems are dependent on how they are installed, or post-install &ldquo;hardening&rdquo;.  Systems and technologies must be &ldquo;secure by default&rdquo; when installed and easily installed properly by non-specialists.</li>
+<li><strong>Open code base.</strong> An open code base allows for infinitely many sets of eyes to review the code, and infinitely many developers to fix any vulnerabilities found.  Open code bases do <strong>NOT</strong> mean the code is secure.  However, there are generally fewer issues, and when issues are found they are addressed faster. They also tend to be widely deployed and tend to be less complex to install and maintain.</li>
+<li><strong>Bug Bounty Program</strong>. Public, open <a href="https://bugcrowd.com/list-of-bug-bounty-programs">Bug Bounty Programs</a> encourage vulnerability research in a responsible manner. As an economist by training I believe when the rewards for good behavior are there you tend to get good behavior. If not, only bad behavior is rewarded.</li>
+</ol>
+
+<h3 id="conditions-for-low-security-levels">Conditions for low security levels</h3>
+
+<ol>
+<li><strong>Not widely deployed</strong> The less widely the technology is deployed and used the fewer opportunities we have to gather good data about it’s security profile.</li>
+<li><strong>Not frequently attacked, or successful attacks are generally not disclosed.</strong> This goes hand in glove with the above point. One issue with vendor sofware used in specialized applications within companies is that successful attacks may not be recognized/known, and/or they may not be disclosed. This gives us low information quality about the actual security performance.</li>
+<li><strong>Difficult to install and configure properly.</strong> ERP applications such as SAP are notoriously complex and difficult to install. The database has over 70,000 tables excluding Y and Z tables, the overall system takes days to setup by highly trained specialists. The attack surface is quite large. SAP may not be a good example because security is good by default and we rarely hear about successful breaches - but the risk in the complexity is real.</li>
+<li><strong>Closed code base</strong> If you have to ask your vendor “is it secure?” then it’s not.  Security isn&rsquo;t something you can provide an answer to unless you&rsquo;re selling snake oil. If the vendor says: “It&rsquo;s secure. We did not put in any back doors. We audited the code ourselves. There are not any kernel level hacks, root kits, or otherwise. This has been tested against a variety of anti-virus scanners and none of them flagged anything. We&rsquo;re very good. Please, please trust us.” then you should know that they are telling you what you want, or need to hear. You could read the <a href="https://technet.microsoft.com/en-us/library/bb457059.aspx">WinXP pamphlet</a> on security back when it was released and it had endless bullet points about how secure it was. It was probably the least secure software in the history of computing based on actual attacks after the fact.</li>
+</ol>
+
+<h3 id="it-s-secure-until-it-s-not">It’s secure… until it’s not</h3>
+
+<p>In the 1770s Joseph Bramah created a lock that was vastly superior to any the world ever seen. Bramah believed it was 100% theft-proof. Bramah was so confident in his design that he published a pamphlet detailing exactly how it worked and he put it in the window of his London storefront, and painted on it a challenge:</p>
+
+<blockquote>
+<p>“The artist who can make an instrument that will pick or open this lock shall receive 200 Guineas the moment it is produced.”</p>
+</blockquote>
+
+<p>Then Jeremiah Chubb created the Chubb detector lock. The way Chubb’s lock worked was that if a lock picker tried to lift one of the tumblers up too high, a latching mechanism would trigger, causing the lock to seize up. When that happened, even the key wouldn’t open the lock. To reset the lock, the owner would have to put in a different key and rotate it in the opposite direction to reset the tumblers.</p>
+
+<p>Thus, if lock owners went to unlock a chest, or a vault, or a front door, and found that their key didn’t work, they would know that someone had tried to get in—and that they had failed.</p>
+
+<p>For 70 years, the names Chubb and Bramah meant “perfect security”.</p>
+
+<p>In 1851, London was hosting The Great Exhibition—the first international exhibition of manufactured products. One of the attendees was A. C. Hobbs, an American locksmith. Back in the states, Hobbs had made a name for himself by showing bank managers that their locks could be easily picked, and convincing them to buy one of his. Hobbs was selling lots of locks.</p>
+
+<p>On day one of the exhibition, Hobbs publicly announced that he would pick the Chubb detector lock — the one that stops working if you pick it incorrectly. It took Hobbs about 25 minutes. And the way Hobbs did it was to use the lock against itself.
+He would pick it until he tripped the detector mechanism, causing the lock to seize up. That would give Hobbs information about how it worked, and then he would pick the lock in the opposite direction to reset the detector. He’d go back and forth firing and resetting the detector until the lock told him everything he needed to know about how to get it open.</p>
+
+<p>But the Chubb detector lock was really just a warm up. The main event was the Bramah safety lock—the one with the challenge painted on it in gold lettering, which had been sitting Bramah’s storefront window for 70 years, unbeaten.</p>
+
+<p>After working on the lock for about 52 hours over the course of fourteen days, Hobbs opened it.</p>
+
+<p>Overnight, the feeling of perfect security had evaporated. And we have never gotten it back.</p>
+
+<h4 id="references">References</h4>
+
+<ul>
+<li><a href="http://gizmodo.com/in-1851-a-man-picked-two-unpickable-locks-and-changed-1698557792">In 1851 a man picked two unpickable locks&hellip;</a></li>
+</ul>
+      </div>
+
+    </div>
+
+    <ul class="pagination">
+      
+      <li><a class="" href="https://danstroot.com/2015/10/03/proprietary-software-is-an-unsafe-building-material/"><span class="icon-chevron-circle-left"></span> Previous Post</a></li>
+      
+      
+      <li><a class="" href="https://danstroot.com/2015/09/06/why-automate-code-reviews/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next Post <span class="icon-chevron-circle-right"></span></a></li>
+      
+    </ul>
+
+    <hr class="soften">
+
+    
+    
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    
+    
+    var disqus_config = function () {
+      this.page.url = 'https:\/\/danstroot.com\/2015\/09\/26\/is-it-secure\/';
+      this.page.identifier = 'https:\/\/danstroot.com\/2015\/09\/26\/is-it-secure\/';
+      this.page.title = 'Is it Secure?';
+    };
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'danstroot';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    
+
+  </div>
+
+  
+  <script id="dsq-count-scr" src="//danstroot.disqus.com/count.js" async></script>
+  
+
+<script src='https://danstroot.com/js/loadjs.min.js'></script>
+
+<script>
+  
+  loadjs(['https:\/\/danstroot.com/css/highlight/github.css', 'https:\/\/danstroot.com/js/highlight.pack.js'], {
+    success: function () { hljs.initHighlightingOnLoad(); },
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+<script>
+  loadjs(['https:\/\/danstroot.com/js/service-worker-registration.js'], {
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+
+</body>
+</html>

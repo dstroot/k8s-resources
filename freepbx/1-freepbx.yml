@@ -1,0 +1,59 @@
+# -- traefik ingress --
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: freepbx
+  namespace: default
+spec:
+  rules:
+  - host: freepbx.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: freepbx
+          servicePort: 80
+---
+# -- freepbx service
+apiVersion: v1
+kind: Service
+metadata:
+  name: freepbx
+  labels:
+    app: freepbx
+spec:
+  selector:
+    app: freepbx
+  # type: LoadBalancer
+  # NOTE LoadBalancer or NodePort would be used if we did not use Traefik for ingress
+  ports:
+  - port: 80 # service port
+    targetPort: 80  # port on container
+    protocol: TCP
+---
+# -- freepbx deployment --
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: freepbx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: freepbx
+  template:
+    metadata:
+      name: freepbx
+      labels:
+        app: freepbx
+    spec:
+      containers:
+      - name: freepbx
+        image: dstroot/freepbx:1.0.0
+        imagePullPolicy: Always
+        resources:  # http://kubernetes.io/docs/user-guide/compute-resources/
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 80

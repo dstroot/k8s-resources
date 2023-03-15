@@ -1,0 +1,114 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ghost
+data:
+  config.js: |
+    // Dynamic config.js for Ghost
+    console.log('Starting Ghost using dynamic config...');
+
+    var config,
+        url = require('url'),
+        path = require('path');
+
+    // check for a URL setup
+    function getUrl() {
+      if (process.env.GHOST_URL) {
+        return process.env.GHOST_URL;
+      } else {
+        console.log("Please set the GHOST_URL environment variable for your blog's URL");
+        return 'http://localhost:2368';
+      }
+    }
+
+    // setup environment variables for your database configuration or
+    // it will default to a local SQLite installation
+    function getDatabase() {
+      if (process.env.DATABASE_TYPE) {
+        return {
+          client: process.env.DATABASE_TYPE,  // 'mysql' or 'pg'
+          connection: {
+            host     : process.env.DATABASE_HOST, // IP or DNS
+            user     : process.env.DATABASE_USER,
+            password : process.env.DATABASE_PASS,
+            database : process.env.DATABASE_DB,   // ghost
+            charset  : 'utf8'
+          }
+        };
+      } else {
+        console.log(' - Using SQLite Ghost database.');
+        return {
+          client: 'sqlite3',
+          connection: {
+            filename: path.join(process.env.GHOST_CONTENT, '/content/data/ghost.db')
+          },
+          debug: false
+        };
+      }
+    }
+
+    // Setup environment variables for your mail service.  Mail service will
+    // be setup if a 'MAIL_TRANSPORT' environment variable is set.
+    function getMailConfig() {
+      if (process.env.MAIL_TRANSPORT) {
+
+        var options = {};
+        options.auth = {};
+
+        if (process.env.MAIL_SERVICE) {
+          options.service = process.env.MAIL_SERVICE;
+        }
+        if (process.env.MAIL_HOST) {
+          options.host = process.env.MAIL_HOST;
+        }
+        if (process.env.MAIL_PORT) {
+          options.port = process.env.MAIL_PORT;
+        }
+        if (process.env.MAIL_SSL) {
+          options.secureConnection = process.env.MAIL_SSL;
+        }
+        if (process.env.MAIL_USERNAME) {
+          options.auth.user = process.env.MAIL_USERNAME;
+        }
+        if (process.env.MAIL_PASSWORD) {
+          options.auth.pass = process.env.MAIL_PASSWORD;
+        }
+        if (process.env.MAIL_FROM) {
+          var from = process.env.MAIL_FROM;
+        }
+        return {
+            transport: process.env.MAIL_TRANSPORT,
+            options: options,
+            from: from
+        };
+      }
+    }
+
+    config = {
+      production: {
+        url: getUrl(),
+        database: getDatabase(),
+        mail: getMailConfig(),
+        server: {
+          host: '0.0.0.0',
+          port: '2368'
+        },
+        paths: {
+          contentPath: path.join(process.env.GHOST_CONTENT, '/content/')
+        }
+      },
+      development: {
+        url: getUrl(),
+        database: getDatabase(),
+        mail: getMailConfig(),
+        server: {
+          host: '0.0.0.0',
+          port: '2368'
+        },
+        paths: {
+          contentPath: path.join(process.env.GHOST_CONTENT, '/content/')
+        }
+      },
+    };
+
+    module.exports = config;

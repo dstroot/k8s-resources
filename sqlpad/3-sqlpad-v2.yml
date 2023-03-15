@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sqlpad
+  labels:
+    app: sqlpad
+spec:
+  type: LoadBalancer   # NodePort
+  ports:
+  - port: 80 # the port that this service should serve on
+    targetPort: 3000  # port on container
+    protocol: TCP
+  selector:
+    app: sqlpad
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: sqlpad
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sqlpad
+    spec:
+      containers:
+      - name: sqlpad
+        image: sqlpad/sqlpad:latest
+        imagePullPolicy: Always # IfNotPresent
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: SQLPAD_PORT
+          value: "3000"
+        - name: SQLPAD_PASSPHRASE
+          valueFrom:
+            secretKeyRef:
+              name: sqlpad-secret
+              key: passphrase
+        ports:
+        - containerPort: 3000
+        # # health check
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 3000
+        #   initialDelaySeconds: 30
+        #   timeoutSeconds: 30
+        volumeMounts:
+        - name: sqlpad-storage
+          mountPath: /data
+      volumes:
+      - name: sqlpad-storage
+        gcePersistentDisk:
+          # This GCE persistent disk must already exist
+          pdName: sqlpad
+          fsType: ext4

@@ -1,0 +1,185 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-conf
+  namespace: kube-system
+data:
+  traefik.toml: |
+    # traefik.toml
+    logLevel = "DEBUG"
+    defaultEntryPoints = ["http","https"]
+    [entryPoints]
+      [entryPoints.http]
+      address = ":80"
+      [entryPoints.http.redirect]
+      entryPoint = "https"
+      # [entryPoints.https.auth.basic]
+      # users = ["dstroot:e33af7471e19f8c0bdae6184784f9c125d4ee73a"]
+      [entryPoints.https]
+      address = ":443"
+      [entryPoints.https.tls]
+
+    # Træfik can be configured using a RESTful api. To enable it:
+    [web]
+    address = ":8080"
+
+    # Optional
+    # ReadOnly = false
+    
+    # To enable more detailed statistics
+    [web.statistics]
+      RecentErrors = 10
+      
+    # To enable Traefik to export internal metrics to Prometheus
+    [web.metrics.prometheus]
+      Buckets=[0.1,0.3,1.2,5.0]
+      
+    # To enable basic auth on the webui
+    # with 2 user/pass: test:test and test2:test2
+    # Passwords can be encoded in MD5, SHA1 and BCrypt: you can use htpasswd to generate those ones
+    #   [web.auth.basic]
+    #     users = ["test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/", "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0"]
+    # To enable digest auth on the webui
+    # with 2 user/realm/pass: test:traefik:test and test2:traefik:test2
+    # You can use htdigest to generate those ones
+    #   [web.auth.digest]
+    #     users = ["test:traefik:a2688e031edb4be6a3797f3882655c05 ", "test2:traefik:518845800f9e2bfb1f1f740ec24f074e"]
+
+    [kubernetes]
+
+    [acme]
+    email = "dan.stroot@gmail.com"
+    storage = "/acme/acme.json"
+    entryPoint = "https"
+    acmeLogging = false
+    onDemand = true
+    
+    # Enable OnHostRule that will request a certificate from Let's Encrypt 
+    # for each frontend with a Host rule: 
+    # http://docs.traefik.io/toml/#acme-lets-encrypt-configuration
+    onHostRule = true
+
+    # Uncomment for the staging let's encrypt server, comment out to go to prod
+    # caServer = "https://acme-staging.api.letsencrypt.org/directory"
+---
+# The resources will be created in the order they appear in the file. 
+# Therefore, it’s best to specify the service first, since that will 
+# ensure the scheduler can spread the pods associated with the service 
+# as they are created by the controller(s), such as Deployment. See:
+# https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik
+  namespace: kube-system
+  labels:
+    k8s-app: traefik-ingress
+  # The source IP for sessions as seen in the target container will not 
+  # be the original source IP of the client. This is the default behavior 
+  # as of Kubernetes v1.5. However, starting in v1.5, an optional beta 
+  # feature has been added that will preserve the client Source IP for 
+  # GCE/GKE environments. This feature will be phased in for other 
+  # cloud providers in subsequent releases. See:
+  # https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
+  annotations: 
+    service.beta.kubernetes.io/external-traffic: "OnlyLocal"
+spec:
+  # We are setting up tiered ingress.  This tells GKE to create an external 
+  # load balancer and point it to this service.  This also alows us to 
+  # assign a static IP address on the external load balancer.  Inside our K8S 
+  # cluster this service will point to the NGINX deployment with N replicas 
+  # (currently 2). These will provide ingress services that in turn point 
+  # to our internal services if we create the appropriate ingress for them. 
+  type: LoadBalancer
+  # GKE supports a static loadBalancer IP address. 
+  # just mark the auto-assigned IP as static first!
+  loadBalancerIP: 104.198.107.147    # <<<<<<<<<<
+  ports:
+    - port: 80
+      name: http
+      targetPort: 80
+    - port: 443
+      name: https
+      targetPort: 443
+  selector:
+    k8s-app: traefik-ingress
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: traefik-ingress
+  namespace: kube-system
+  labels:
+    k8s-app: traefik-ingress
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      k8s-app: traefik-ingress
+  template:
+    metadata:
+      labels:
+        k8s-app: traefik-ingress
+        name: traefik-ingress
+    spec:
+      terminationGracePeriodSeconds: 60
+      # Needed below for CNI - Research...
+      # hostNetwork: true
+      containers:
+        - name: traefik-ingress
+          image: traefik:v1.2.1
+          # imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 200m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: acme
+              mountPath: /acme
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+            - containerPort: 8080
+          args:
+            - --configfile=/config/traefik.toml
+            - --logLevel=DEBUG
+        - name: oauth2-proxy
+          image: dstroot/oauth2_proxy:1.0.4
+          # imagePullPolicy: Always
+
+          # The GitHub auth provider supports two additional parameters to restrict 
+          # authentication to Organization or Team level access. Restricting by 
+          # org and team is normally accompanied with --email-domain=*
+          # -github-org="": restrict logins to members of this organisation
+          # -github-team="": restrict logins to members of any of these teams, separated by a comma
+          # Make a secret: python -c 'import os,base64; print base64.b64encode(os.urandom(16))'
+          args:
+            - "-upstream=http://localhost:8080/"
+            - "-provider=github"
+            - "-cookie-secure=true"
+            - "-cookie-expire=48h0m"
+            - "-cookie-refresh=60m"
+            - "-cookie-secret=JU2DFqZC8aB4hD1c6V1fBQ=="
+            - "-cookie-domain=traefik.thepishoppe.com"
+            - "-http-address=0.0.0.0:4180"
+            - "-redirect-url=https://traefik.thepishoppe.com/oauth2/callback"
+            - "-email-domain=*"
+            - "-client-id=e7fbd9c766f31a1622d4"
+            - "-client-secret=f189688f1f6372a454dbf1fd45e9f0d903f2afad"
+          ports:
+          - containerPort: 4180
+      volumes:
+        - name: config
+          configMap:
+            name: traefik-conf
+        - name: acme
+          gcePersistentDisk:
+            # This GCE persistent disk must already exist.
+            pdName: acme
+            fsType: ext4

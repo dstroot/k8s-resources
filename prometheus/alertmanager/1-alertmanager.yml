@@ -1,0 +1,61 @@
+# https://coreos.com/blog/prometheus-and-kubernetes-up-and-running.html
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    prometheus.io/scrape: 'true'
+  labels:
+    name: alertmanager
+  name: alertmanager
+  namespace: monitoring
+spec:
+  selector:
+    app: alertmanager
+  type: LoadBalancer # NodePort
+  # loadBalancerSourceRanges:
+  # - "10.180.0.0/16"
+  # - "10.245.0.0/24"
+  ports:
+  - port: 9093 # the port that this service should serve on
+    targetPort: alertmanager  # port on container
+    protocol: TCP
+----
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: alertmanager
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alertmanager
+  template:
+    metadata:
+      name: alertmanager
+      labels:
+        app: alertmanager
+    spec:
+      containers:
+      - name: alertmanager
+        image: prom/alertmanager:latest  #0.5.1
+        args:
+          - '-config.file=/etc/alertmanager/config.yml'
+          - '-storage.path=/alertmanager'
+        ports:
+        - name: alertmanager
+          containerPort: 9093
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/alertmanager
+        - name: alertmanager
+          mountPath: /prometheus
+      volumes:
+      - name: config-volume
+        configMap:
+          name: alertmanager
+      - name: alertmanager
+        gcePersistentDisk:
+          # This GCE persistent disk must already exist
+          pdName: alertmanager
+          fsType: ext4

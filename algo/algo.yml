@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: algo
+  labels:
+    app: algo
+spec:
+  selector:
+    app: algo
+  type: LoadBalancer
+  ports:
+    - port: 80
+      name: http
+      targetPort: 80
+      protocol: TCP
+    - port: 443
+      name: https
+      targetPort: 443
+      protocol: TCP
+    - port: 500
+      name: vpn1
+      targetPort: 500
+      protocol: TCP
+    - port: 4500
+      name: vpn2
+      targetPort: 4500
+      protocol: TCP
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: algo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: algo
+  template:
+    metadata:
+      name: algo
+      labels:
+        app: algo
+    spec:
+      containers:
+        - name: algo
+          stdin: true
+          tty: true
+          image: dstroot/algo:0.0.5
+          imagePullPolicy: IfNotPresent # Always
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+            - containerPort: 500
+            - containerPort: 4500
+          volumeMounts:
+            - name: algo-volume
+              mountPath: /algo/configs
+            - name: algo-config
+              mountPath: /algo/config.cfg
+      volumes:
+        - name: algo-volume
+          gcePersistentDisk:
+            pdName: algo
+            fsType: ext4
+        - name: algo-config
+          configMap:
+            name: algo-config

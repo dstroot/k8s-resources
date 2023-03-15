@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Dan Stroot &middot; Virtual Machines vs Containers</title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="theme-color" content="#202020">
+
+  
+  <link rel="manifest" href="https://danstroot.com/manifest.json">
+
+  
+  <link rel="stylesheet" href="https://danstroot.com/css/styles.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+
+  
+  <link rel="icon" href="https://danstroot.com/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=152">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=120">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=76">
+  <link rel="apple-touch-icon-precomposed" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=60">
+
+  
+  
+  
+  
+
+  
+  
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-44765020', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+</head>
+
+<body class=" ">
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+
+
+    <div class="myface">
+      <a href="https://danstroot.com/">
+        <img src="https://danstroot.com/img/face_sm.jpg" srcset="https://danstroot.com/img/face_lg.jpg 2x" alt="Dan Stroot" height="150" width="150">
+        <i class="icon-home"></i>
+      </a>
+    </div>
+
+    <div class="sidebar-about">
+      <a href="https://danstroot.com/"><h1>Dan Stroot</h1></a>
+      <p class="lead">I love building things. Made in California. Family man, technologist and Hacker News aficionado. Eternally curious.</p>
+    </div>
+
+    <hr class="hr-sidebar">
+
+    
+
+    <a href="https://danstroot.com/about">About</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://danstroot.com/post">Archive</a>
+
+    <hr class="hr-sidebar">
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/dstroot"><span class="icon-github-square"></span></a>
+      <a href="https://www.linkedin.com/in/danstroot"><span class="icon-linkedin-square"></span></a>
+      <a href="https://www.facebook.com/dan.stroot"><span class="icon-facebook-square"></span></a>
+      <a href="https://twitter.com/danstroot"><span class="icon-twitter-square"></span></a>
+      
+      </li>
+    </ul>
+
+    
+
+    <p class="small">Copyright &copy; 2017</p>
+
+  </div>
+</div>
+
+
+  <div class="content container">
+    <div class="post">
+
+      <h1 class="post-title">Virtual Machines vs Containers</h1>
+
+      
+      <span class="post-date">May 5, 2014 &middot; <span class="icon-clock-o"></span> 3 minute read &middot; <a href="https://danstroot.com/2014/05/05/virtual-machines-vs-containers/#disqus_thread">Comments</a>  
+      </span>
+
+      
+      <div class="post-content">
+      <p><img src="https://danstroot.com/img/docker.png" alt="Docker" /></p>
+
+<p>Three driving forces of infrastructure efficiency in a large, distributed environment were:</p>
+
+<ul>
+<li>Data center consolidation <em>(KPI: How many DCs do you have?)</em></li>
+<li>Host virtualization <em>(KPI: what percentage of your servers are virtual?)</em></li>
+<li>&ldquo;Cloud&rdquo; in its various forms <em>(KPI: How many servers are you still running?)</em></li>
+</ul>
+
+<p>Assuming you have been aggresive you may not have any data centers left.  You may be buying services rather than servers, and/or all of your remaining machines might be virtualized and hosted in someone else&rsquo;s data center. Now what?</p>
+
+<p></p>
+
+<h3 id="where-is-the-next-level-of-infrastructure-efficiency-going-to-come-from">Where is the next level of infrastructure efficiency going to come from?</h3>
+
+<p>Personally I think the next wave of infrastructure efficiency will be driven by Linux container technology (LinuX Containers = LXC). The LXC container approach does <strong>not</strong> require a hypervisor - instead you run isolated &ldquo;containers&rdquo; on a Linux host.</p>
+
+<p>LXC provides operating system-level virtualization, but instead of creating a full-fledged virtual machine LXC containers leverage cgroups (control groups) to completely isolate application&rsquo;s view of the operating environment, including process trees, network, user ids and mounted file systems. Cgroups are a Linux kernel feature to limit, account, and isolate resource usage (CPU, memory, disk I/O, etc.) of process groups.</p>
+
+<p>This work was started by engineers at Google and in late 2007 it was merged into kernel version 2.6.24. LXC also relies on other kinds of namespace-isolation functionality, which have been developed and integrated into the mainline Linux kernel since then. It looks something like this:</p>
+
+<p><img src="https://danstroot.com/img/dockervsvm.png" alt="Docker" /></p>
+
+<h3 id="is-lxc-technology-really-better">Is LXC Technology Really Better?</h3>
+
+<p>Here are some of the major benefits of Linux Containers from my perspective:</p>
+
+<h4 id="fast">Fast</h4>
+
+<ul>
+<li>Runtime performance at near bare metal speeds (typically 97+ percent of bare metal).</li>
+<li>Management operations (boot, stop, start, reboot, etc.) in seconds or milliseconds.</li>
+</ul>
+
+<h4 id="agile">Agile</h4>
+
+<ul>
+<li>VM-like agility &ndash; it&rsquo;s still &ldquo;virtualization&rdquo;.</li>
+<li>With VMs we often touted our ability to ship a machine &ldquo;over the wire&rdquo; since a virtual machine is basically just a large file.  It also allows better business recovery scenarios where I can have a snapshot of my production machine(s) copied to a different datacenter at regular intervals. Guess what? LXC containers are an order of magnitude smaller!</li>
+<li>Developers can essentially use the exact same containers as those deployed into production.</li>
+</ul>
+
+<h4 id="lightweight">Lightweight</h4>
+
+<ul>
+<li>Just enough Operating System (JeOS); include only what you need reducing image and container bloat.</li>
+<li>Minimal per container penalty which equates to greater density and hence greater returns on existing assets &ndash; imagine packing 100s or 1000s of containers on a single host node!</li>
+</ul>
+
+<h4 id="inexpensive">Inexpensive</h4>
+
+<ul>
+<li>Open source &ndash; free &ndash; lower TCO.</li>
+<li>Supported with out-of-the-box modern Linux kernels.</li>
+<li>LXC hosting likely to drive the next wave of cloud products.</li>
+</ul>
+
+<h4 id="ecosystem">Ecosystem</h4>
+
+<ul>
+<li>Growing in popularity &ndash; just checkout the google trends for docker or LXC.</li>
+<li>Vibrant community and numerous 3rd party applications (1000s of prebuilt images on docker index and 100s of open source apps on github or other public sources).</li>
+</ul>
+
+<h4 id="benchmarks">Benchmarks</h4>
+
+<ul>
+<li>Average boot time: LXC 1.5x faster</li>
+<li>Average reboot time: LXC 18.9x faster</li>
+<li>LXC CPU growth 26x lower than VM (per machine)</li>
+<li>LXC Memory group 3x lower than VM (per machine)</li>
+<li>LXC images 3.2x smaller than VM</li>
+</ul>
+
+<h3 id="summary">Summary</h3>
+
+<p>The next wave of server density is likely to be driven by LXC technology instead of traditional VM technology.  This technology may also increase further an organizations agility, developer productivity and even business continuity. However, LXC technology is not yet as mature or &ldquo;manageable&rdquo; as VM technology, but tools like Docker are developing quickly.</p>
+
+<p><em>Sources:</em></p>
+
+<ul>
+<li><a href="http://bodenr.blogspot.com/2014/05/kvm-and-docker-lxc-benchmarking-with.html">KVM and Docker LXC Benchmarking with OpenStack</a></li>
+</ul>
+      </div>
+
+    </div>
+
+    <ul class="pagination">
+      
+      <li><a class="" href="https://danstroot.com/2014/06/29/coreos-thousands-of-machines-and-millions-of-docker-containers...-no-hypervisor-needed./"><span class="icon-chevron-circle-left"></span> Previous Post</a></li>
+      
+      
+      <li><a class="" href="https://danstroot.com/2014/03/14/enterprise-search-2014/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next Post <span class="icon-chevron-circle-right"></span></a></li>
+      
+    </ul>
+
+    <hr class="soften">
+
+    
+    
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    
+    
+    var disqus_config = function () {
+      this.page.url = 'https:\/\/danstroot.com\/2014\/05\/05\/virtual-machines-vs-containers\/';
+      this.page.identifier = 'https:\/\/danstroot.com\/2014\/05\/05\/virtual-machines-vs-containers\/';
+      this.page.title = 'Virtual Machines vs Containers';
+    };
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'danstroot';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    
+
+  </div>
+
+  
+  <script id="dsq-count-scr" src="//danstroot.disqus.com/count.js" async></script>
+  
+
+<script src='https://danstroot.com/js/loadjs.min.js'></script>
+
+<script>
+  
+  loadjs(['https:\/\/danstroot.com/css/highlight/github.css', 'https:\/\/danstroot.com/js/highlight.pack.js'], {
+    success: function () { hljs.initHighlightingOnLoad(); },
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+<script>
+  loadjs(['https:\/\/danstroot.com/js/service-worker-registration.js'], {
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+
+</body>
+</html>

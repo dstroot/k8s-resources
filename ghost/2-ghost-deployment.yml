@@ -1,0 +1,68 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ghost
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ghost
+  template:
+    metadata:
+      name: ghost
+      labels:
+        app: ghost
+    spec:
+      containers:
+      - name: ghost
+        image: ghost:0.9.0
+        # imagePullPolicy: Always
+        resources:  # http://kubernetes.io/docs/user-guide/compute-resources/
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - name: ghost
+          containerPort: 2368
+          protocol: TCP
+        env:
+        - name: NODE_ENV
+          value: production # development # production
+        - name: DATABASE_TYPE
+          value: mysql
+        - name: DATABASE_HOST
+          value: mysql
+        - name: DATABASE_USER
+          value: root
+        - name: DATABASE_PASS
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: password
+        - name: DATABASE_DB
+          value: ghost
+        - name: GHOST_URL
+          value: "http://kube.recipes"
+        - name: MAIL_TRANSPORT
+          value: SMTP  # SES
+        - name: MAIL_SERVICE  # 'Gmail', 'SES', 'Mailgun'
+          value: Gmail
+        - name: MAIL_USERNAME
+          value: "sbtpg.lajolla@gmail.com"
+        - name: MAIL_PASSWORD
+          value: aa853127
+        - name: MAIL_FROM
+          value: "\"Dan Stroot\" <dan.stroot@gmail.com>"  # "\"My Name\" <myemail@address.com>"
+        volumeMounts:
+        - name: ghost
+          mountPath: /var/lib/ghost/content
+        - name: ghost-config
+          mountPath: /var/lib/ghost
+      volumes:
+      - name: ghost
+        gcePersistentDisk:
+          pdName: ghost
+          fsType: ext4
+      - name: ghost-config
+        configMap:
+          name: ghost

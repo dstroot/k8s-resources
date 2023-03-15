@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: echoserver
+spec:
+  ports:
+  - port: 8080
+    # target port will be the oauth2_proxy port
+    targetPort: 4180
+    protocol: TCP
+  selector:
+    k8s-app: echoserver
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: echoserver
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k8s-app: echoserver
+    spec:
+      containers:
+      - name: echoserver
+        image: gcr.io/google_containers/echoserver:1.4
+        # imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 100m
+            memory: 20Mi
+          requests:
+            cpu: 50m
+            memory: 10Mi
+        ports:
+        # the port the service really runs on
+        - containerPort: 8080
+      # The oauth2-proxy will point to our ultimate destination
+      # https://github.com/bitly/oauth2_proxy
+      - name: oauth2-proxy
+        image: dstroot/oauth2_proxy:1.0.3 # a5huynh/oauth2_proxy 
+        # imagePullPolicy: Always
+    
+        # The GitHub auth provider supports two additional parameters to restrict 
+        # authentication to Organization or Team level access. Restricting by 
+        # org and team is normally accompanied with --email-domain=*
+        # -github-org="": restrict logins to members of this organisation
+        # -github-team="": restrict logins to members of any of these teams, separated by a comma
+        # Make a secret: python -c 'import os,base64; print base64.b64encode(os.urandom(16))'
+        args:
+          - "-upstream=http://localhost:8080/"
+          - "-provider=github"
+          - "-cookie-secure=true"
+          - "-cookie-expire=48h0m"
+          - "-cookie-refresh=60m"
+          - "-cookie-secret=JU2DFqZC8aB4hD1c6V1fBQ=="
+          - "-cookie-domain=auth.thepishoppe.com"
+          - "-http-address=0.0.0.0:4180"
+          - "-redirect-url=https://auth.thepishoppe.com/oauth2/callback"
+          - "-email-domain=*"
+          - "-client-id=c03284eed8634e087053"
+          - "-client-secret=f5a9b1fa61dcd327bf38920c3c812da02cb9fd1b"
+        ports:
+        - containerPort: 4180

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Dan Stroot &middot; CoreOS: thousands of machines and millions of Docker containers... no hypervisor needed.</title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="theme-color" content="#202020">
+
+  
+  <link rel="manifest" href="https://danstroot.com/manifest.json">
+
+  
+  <link rel="stylesheet" href="https://danstroot.com/css/styles.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+
+  
+  <link rel="icon" href="https://danstroot.com/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=152">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=120">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=76">
+  <link rel="apple-touch-icon-precomposed" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=60">
+
+  
+  
+  
+  
+
+  
+  
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-44765020', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+</head>
+
+<body class=" ">
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+
+
+    <div class="myface">
+      <a href="https://danstroot.com/">
+        <img src="https://danstroot.com/img/face_sm.jpg" srcset="https://danstroot.com/img/face_lg.jpg 2x" alt="Dan Stroot" height="150" width="150">
+        <i class="icon-home"></i>
+      </a>
+    </div>
+
+    <div class="sidebar-about">
+      <a href="https://danstroot.com/"><h1>Dan Stroot</h1></a>
+      <p class="lead">I love building things. Made in California. Family man, technologist and Hacker News aficionado. Eternally curious.</p>
+    </div>
+
+    <hr class="hr-sidebar">
+
+    
+
+    <a href="https://danstroot.com/about">About</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://danstroot.com/post">Archive</a>
+
+    <hr class="hr-sidebar">
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/dstroot"><span class="icon-github-square"></span></a>
+      <a href="https://www.linkedin.com/in/danstroot"><span class="icon-linkedin-square"></span></a>
+      <a href="https://www.facebook.com/dan.stroot"><span class="icon-facebook-square"></span></a>
+      <a href="https://twitter.com/danstroot"><span class="icon-twitter-square"></span></a>
+      
+      </li>
+    </ul>
+
+    
+
+    <p class="small">Copyright &copy; 2017</p>
+
+  </div>
+</div>
+
+
+  <div class="content container">
+    <div class="post">
+
+      <h1 class="post-title">CoreOS: thousands of machines and millions of Docker containers... no hypervisor needed.</h1>
+
+      
+      <span class="post-date">June 29, 2014 &middot; <span class="icon-clock-o"></span> 5 minute read &middot; <a href="https://danstroot.com/2014/06/29/coreos-thousands-of-machines-and-millions-of-docker-containers...-no-hypervisor-needed./#disqus_thread">Comments</a>  
+      </span>
+
+      
+      <div class="post-content">
+      <p><img src="https://danstroot.com/img/coreos-logo.png" alt="CoreOS" /></p>
+
+<p>I have been playing around with CoreOS to get a sense of how everything works. The vision of this project is incredible.</p>
+
+<p>CoreOS describes itself as <em>&ldquo;a new Linux distribution that has been re-architected to provide features needed to run modern infrastructure stacks. The strategies and architectures that influence CoreOS allow companies like Google, Facebook and Twitter to run their services at scale with high resilience.&rdquo;</em></p>
+
+<p>CoreOS displaces hypervisors and machine virtualization in favor of Docker and Linux containers.  CoreOS uses Linux containers to manage your services at a high level of abstraction. A single service&rsquo;s code and all dependencies are packaged within a container that can be run on one or many CoreOS machines.</p>
+
+<p>Clustering works across platforms, meaning there is no cloud vendor lock-in. For example, CoreOS runs on Amazon EC2, Rackspace, QEMU/KVM, VMware and OpenStack and your own hardware. Running a single CoreOS cluster on multiple different clouds or cloud + bare metal is supported and encouraged. This lack of lock-in is the reason why I have supported OpenStack and CoreOS takes this even further.
+</p>
+
+<h4 id="we-begin-with-concept-of-a-large-fleet-of-machines-that-start-and-remain-exactly-consistent-at-the-os-level">We begin with concept of a large fleet of machines that start (and remain) exactly consistent at the OS level.</h4>
+
+<ul>
+<li>First, think of CoreOS somewhat like you might think of a hypervisor today.  It is the first layer you put down on bare metal, or as a virtual machine in a cloud. It is a &ldquo;bare minimum&rdquo; Linux-based OS that supports Linux LXC containers.</li>
+<li>It is designed to run as a large fleet (hive?) of machines. It includes built-in primitives such as distributed locking and master election, plus key services necessary to manage the fleet of machines. (more on this later).</li>
+<li>It is meant to always be consistent across machines.
+
+<ul>
+<li>CoreOS utilizes an active/passive dual-partition scheme to update the OS as a <em>single unit</em> instead of <em>package by package</em>.<br /></li>
+<li>CoreOS also has the tenant of <strong>automatically</strong> updating itself. This avoids the issue of inconsistent state from machine to machine within a large cluster. Conceptually this is roughly like a self-updating hypervisor.</li>
+<li>Each machine has to acquire and hold a reboot lock before it is allowed to reboot. The reboot lock is held until the machine releases it after a successful update. The number of machines allowed to reboot simultaneously is configurable. The main goal to allow for an update to be applied to a fleet quickly, without impacting capacity for the services running on the cluster.</li>
+</ul></li>
+</ul>
+
+<h4 id="next-we-have-the-concept-that-the-fleet-of-machines-is-simply-a-single-pool-of-compute-resources">Next, we have the concept that the fleet of machines is simply a single pool of compute resources.</h4>
+
+<ul>
+<li>You treat your CoreOS cluster as if it has a single, shared init system - one giant systemd if you will.</li>
+<li>Instead of running a service on a specific machine, services are submitted to the cluster via the cluster manager, fleetctl, which decides where they should run.</li>
+<li>Your services/applications are in containers that act as small, ephemeral units that can easily migrate around a cluster of self-updating CoreOS machines.</li>
+<li>It is smart enough to distribute services across a cluster using machine-level affinity or anti-affinity.</li>
+<li>If your application consists of 5 containers fleet will guarantee that they stay running somewhere on the cluster. If a machine fails or needs to be updated, containers running on that machine will be moved to other qualified machines in the cluster.</li>
+</ul>
+
+<h4 id="with-a-single-shared-brain">&hellip; with a single, shared brain</h4>
+
+<ul>
+<li>CoreOS provides a distributed key value store called &ldquo;etcd&rdquo;.</li>
+<li>The etcd client runs on each machine in a cluster. etcd gracefully handles master election during network partitions and the loss of the current master.</li>
+<li>Docker containers can read, write and listen to etcd over the docker0 network interface. With these three actions you construct extremely sophisticated orchestration to happen whenever etcd values change. An example of this would be listening for changes and then to reconfigure an upstream proxy when a new container of an application is started.</li>
+<li>Since etcd is replicated, all changes are reflected across the entire cluster. Your application can always reach the local etcd instance at 127.0.0.1:4001.</li>
+<li>Your applications can read and write data into etcd. Common examples are storing database connection details, cache settings, feature flags, and more. Let&rsquo;s say we&rsquo;re running a simple web app like Wordpress. Instead of hardcoding our database address with in the config file, we&rsquo;ll fetch it from etcd instead. It&rsquo;s as simple as curl-ing <a href="http://127.0.0.1:4001/v1/keys/database">http://127.0.0.1:4001/v1/keys/database</a> and using the response within your DB connection code.</li>
+</ul>
+
+<h3 id="summary">Summary</h3>
+
+<p>So now we have a hive of self-updating Linux hosts with a single, distributed init system (systemd and fleet) and a single shared brain (etcd).  It looks something like this:</p>
+
+<p><img src="https://danstroot.com/img/coreos-action.png" alt="CoreOS in Action" /></p>
+
+<p>This depicts eight containers (two load balancers and six api servers) being managed by &ldquo;fleet&rdquo; to run in various CoreOS hosts in the cluster, with shared access to etcd.</p>
+
+<p>Momentum is shifting this way rapidly. Earlier this month Rackspace announced <a href="https://www.rackspace.com/blog/onmetal-the-right-way-to-scale/">OnMetal</a>. Rackspace&rsquo;s OnMetal Cloud Service is the first of its kind. Using OnMetal you create machine instances using OpenStack APIs but, instead of being provisioned a virtual machine, you are provisioned <strong>on physical hardware</strong>. OnMetal servers are single-tenant, bare-metal servers provisioned via the OpenStack API and can be spun up as quickly as VMs.</p>
+
+<p>Once OnMetal is live, you&rsquo;ll be able to provision CoreOS instances on Rackspace&rsquo;s OnMetalcloud. This combination gives you the ease of spinning up machines with the click of a mouse, the security of running CoreOS with automatic updates, and the raw horsepower of running on bare metal. Pretty impressive!</p>
+      </div>
+
+    </div>
+
+    <ul class="pagination">
+      
+      <li><a class="" href="https://danstroot.com/2014/07/01/from-open-government-to-open-corporation/"><span class="icon-chevron-circle-left"></span> Previous Post</a></li>
+      
+      
+      <li><a class="" href="https://danstroot.com/2014/05/05/virtual-machines-vs-containers/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next Post <span class="icon-chevron-circle-right"></span></a></li>
+      
+    </ul>
+
+    <hr class="soften">
+
+    
+    
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    
+    
+    var disqus_config = function () {
+      this.page.url = 'https:\/\/danstroot.com\/2014\/06\/29\/coreos-thousands-of-machines-and-millions-of-docker-containers...-no-hypervisor-needed.\/';
+      this.page.identifier = 'https:\/\/danstroot.com\/2014\/06\/29\/coreos-thousands-of-machines-and-millions-of-docker-containers...-no-hypervisor-needed.\/';
+      this.page.title = 'CoreOS: thousands of machines and millions of Docker containers... no hypervisor needed.';
+    };
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'danstroot';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    
+
+  </div>
+
+  
+  <script id="dsq-count-scr" src="//danstroot.disqus.com/count.js" async></script>
+  
+
+<script src='https://danstroot.com/js/loadjs.min.js'></script>
+
+<script>
+  
+  loadjs(['https:\/\/danstroot.com/css/highlight/github.css', 'https:\/\/danstroot.com/js/highlight.pack.js'], {
+    success: function () { hljs.initHighlightingOnLoad(); },
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+<script>
+  loadjs(['https:\/\/danstroot.com/js/service-worker-registration.js'], {
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+
+</body>
+</html>

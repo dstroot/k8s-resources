@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch
+  labels:
+    app: elasticsearch
+  # namespace: kube-system
+spec:
+  type: NodePort   # LoadBalancer or NodePort
+  ports:
+  - port: 9200
+    targetPort: es-port
+    protocol: TCP
+  selector:
+    app: elasticsearch
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: elasticsearch
+  # namespace: kube-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    # namespace: kube-system
+    spec:
+      containers:
+      - name: elasticsearch
+        image: elasticsearch:2.3.5
+        # This image comes with a default set of configuration files for elasticsearch, but if you want to provide your own set of configuration files, you can do so via a volume mounted at `/usr/share/elasticsearch/config`
+
+        # This image is configured with a volume at /usr/share/elasticsearch/data to hold the persisted index data. Use that path if you would like to keep the data in a mounted volume
+
+        # This image includes EXPOSE 9200 9300 (default http.port), so standard container linking will make it automatically available to the linked containers.
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        ports:
+        - name: es-port
+          containerPort: 9200
+        - name: es-transport
+          containerPort: 9300
+        volumeMounts:
+        - name: elasticsearch
+          mountPath: /usr/share/elasticsearch/data
+      volumes:
+      - name: elasticsearch
+        gcePersistentDisk:
+          pdName: elasticsearch # This GCE persistent disk must already exist
+          fsType: ext4

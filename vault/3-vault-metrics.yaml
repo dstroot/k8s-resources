@@ -1,0 +1,52 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: vault-metrics
+# spec:
+#   type: LoadBalancer   # LoadBalancer or NodePort
+#   loadBalancerIP: 130.211.126.76
+#   ports:
+#   - port: 8200
+#     targetPort: 8200
+#     protocol: TCP
+#   selector:
+#     app: vault-metrics
+# ---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: vault-metrics
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vault-metrics
+      # If we annotate the pod properly then prometheus will
+      # discover it and automatically scrape it. Cool!
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9102"
+    spec:
+      containers:
+      - name: vault-metrics
+        image: prom/statsd-exporter:0.3.0  # https://hub.docker.com/r/prom/statsd-exporter/
+        args:
+        - -statsd.mapping-config=/vault-metrics/config/statsd_mapping.conf
+        - -statsd.add-suffix=false
+        ports:
+        - containerPort: 9102  # The address on which to expose the web interface and generated Prometheus metrics.
+        - containerPort: 9125  # The UDP address on which to receive statsd metric lines.
+          protocol: UDP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+          - name: vault-metrics-config
+            mountPath: /vault-metrics/config
+      restartPolicy: Always
+      volumes:
+      - name: vault-metrics-config
+        configMap:
+          name: vault-metrics-config

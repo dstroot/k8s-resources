@@ -1,0 +1,115 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubernetes-dashboard
+  namespace: kube-system
+  labels:
+    k8s-addon: kubernetes-dashboard.addons.k8s.io
+    k8s-app: kubernetes-dashboard
+    kubernetes.io/cluster-service: "true"
+spec:
+  selector:
+    k8s-app: kubernetes-dashboard
+  ports:
+  - port: 80
+    # target port will be the oauth2_proxy port
+    targetPort: 9090
+    protocol: TCP
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: kubernetes-dashboard
+  namespace: kube-system
+  labels:
+    k8s-addon: kubernetes-dashboard.addons.k8s.io
+    k8s-app: kubernetes-dashboard
+    version: v1.5.0
+    kubernetes.io/cluster-service: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: kubernetes-dashboard
+  template:
+    metadata:
+      labels:
+        k8s-addon: kubernetes-dashboard.addons.k8s.io
+        k8s-app: kubernetes-dashboard
+        version: v1.5.0
+        kubernetes.io/cluster-service: "true"
+      annotations:
+        scheduler.alpha.kubernetes.io/critical-pod: ''
+        scheduler.alpha.kubernetes.io/tolerations: '[{"key":"CriticalAddonsOnly", "operator":"Exists"}]'
+    spec:
+      containers:
+      - name: kubernetes-dashboard
+        image: gcr.io/google_containers/kubernetes-dashboard-amd64:v1.5.0
+        resources:
+          # keep request = limit to keep this container in guaranteed class
+          limits:
+            cpu: 100m
+            memory: 50Mi
+          requests:
+            cpu: 100m
+            memory: 50Mi
+        ports:
+        - containerPort: 9090
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9090
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+      # The oauth2-proxy will point to our ultimate destination
+      # https://github.com/bitly/oauth2_proxy
+      # - name: oauth2-proxy
+      #   image: a5huynh/oauth2_proxy
+      #   # imagePullPolicy: Always
+      # 
+      #   # The GitHub auth provider supports two additional parameters to restrict 
+      #   # authentication to Organization or Team level access. Restricting by 
+      #   # org and team is normally accompanied with --email-domain=*
+      #   # -github-org="": restrict logins to members of this organisation
+      #   # -github-team="": restrict logins to members of any of these teams, separated by a comma
+      #   args:
+      #     - "-upstream=http://localhost:9090/"
+      #     - "-provider=github"
+      #     - "-cookie-secure=true"
+      #     - "-cookie-expire=168h0m"
+      #     - "-cookie-refresh=60m"
+      #     - "-cookie-secret=__SECRET__"
+      #     - "-cookie-domain=traefik.thepishoppe.com"
+      #     - "-http-address=0.0.0.0:4180"
+      #     - "-redirect-url=https://traefik.thepishoppe.com/oauth2/callback"
+      #     - "-email-domain=*"
+      #     - "-client-id=__CLIENT ID__"
+      #     - "-client-secret=__CLIENT SECRET__"
+      #   ports:
+      #   - containerPort: 4180
+---
+# # Ingress listens on port 443 and listens for "echo.thepishoppe.com" 
+# # which points to the service "echoserver". The annotations tell the 
+# # NGINX and Kube Lego services to get a Let's encrypt certificate.
+# # Ingress on 443 -> Service 8080 -> OAUTH2 Proxy 4180 -> Echo Server 8080
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: external-dashboard
+#   namespace: kube-system
+#   annotations:
+#     kubernetes.io/tls-acme: "true"
+#     kubernetes.io/ingress.class: "nginx"
+# spec:
+#   tls:
+#   - hosts:
+#     - traefik.thepishoppe.com
+#     secretName: traefik-tls
+#   rules:
+#   - host: traefik.thepishoppe.com
+#     http:
+#       paths:
+#       - path: /
+#         backend:
+#           serviceName: kubernetes-dashboard
+#           servicePort: 80

@@ -1,0 +1,19 @@
+{
+  "recipeName": "Redis",
+  "logo": "https://hub.docker.com/public/images/official/redis.png",
+  "recipe": "https://raw.githubusercontent.com/dstroot/k8s-resources/master/redis/readme.md",
+  "description": "Redis is an open source (BSD licensed), in-memory data structure store, used as database, cache and message broker.",
+  "recipeAuthor": "Dan Stroot",
+  "homepage": "http://redis.io/",
+  "license": "http://redis.io/topics/license",
+  "tags": [
+    "redis",
+    "cache",
+    "in-memory",
+    "database",
+    "noSQL"
+  ],
+  "files": [
+    "https://raw.githubusercontent.com/dstroot/k8s-resources/master/redis/redis.yaml"
+  ]
+}

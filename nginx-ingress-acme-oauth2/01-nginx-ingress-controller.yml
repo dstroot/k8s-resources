@@ -1,0 +1,127 @@
+# ** The only change necessary is setting the reserved IP below **
+# The resources will be created in the order they appear in the file. 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-ingress-controller
+  namespace: nginx-ingress
+# https://github.com/kubernetes/ingress/blob/master/controllers/nginx/configuration.md
+# https://github.com/vozlt/nginx-module-vts
+data:
+  proxy-connect-timeout: "10"
+  proxy-read-timeout: "60"
+  proxy-send-timeout: "60"
+  proxy-body-size: "10m"
+  hsts: "false"
+  hsts-include-subdomains: "false"
+  server-name-hash-bucket-size: "256"
+  enable-vts-status: "true"
+---
+# The resources will be created in the order they appear in the file. 
+# Therefore, it’s best to specify the service first, since that will 
+# ensure the scheduler can spread the pods associated with the service 
+# as they are created by the controller(s), such as Deployment. See:
+# https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-controller
+  namespace: nginx-ingress
+  labels:
+    app: nginx-ingress-controller
+  # The source IP for sessions as seen in the target container will not 
+  # be the original source IP of the client. This is the default behavior 
+  # as of Kubernetes v1.5. However, starting in v1.5, an optional beta 
+  # feature has been added that will preserve the client Source IP for 
+  # GCE/GKE environments. This feature will be phased in for other 
+  # cloud providers in subsequent releases. See:
+  # https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
+  annotations: 
+    service.beta.kubernetes.io/external-traffic: "OnlyLocal"
+spec:
+  # We are setting up tiered ingress.  This tells GKE to create an external 
+  # load balancer and point it to this service.  This also alows us to 
+  # assign a static IP address on the external load balancer.  Inside our K8S 
+  # cluster this service will point to the NGINX deployment with N replicas 
+  # (currently 2). These will provide ingress services that in turn point 
+  # to our internal services if we create the appropriate ingress for them. 
+  type: LoadBalancer
+  # GKE supports a static loadBalancer IP address. 
+  # just mark the auto-assigned IP as static first!
+  loadBalancerIP: 104.198.107.147    # <<<<<<<<<<
+  ports:
+    - port: 80
+      name: http
+      targetPort: 80
+    - port: 443
+      name: https
+      targetPort: 443
+  selector:
+    # Selects nginx-ingress-controller pods
+    k8s-app: nginx-ingress-controller
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-ingress-controller
+  namespace: nginx-ingress
+  labels:
+    k8s-app: nginx-ingress-controller
+  annotations:
+    prometheus.io/port: "10254"
+    prometheus.io/scrape: "true"
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        k8s-app: nginx-ingress-controller
+    spec:
+      # hostNetwork makes it possible to use ipv6 and to preserve the source 
+      # IP correctly regardless of docker configuration however, it is not 
+      # a hard dependency of the nginx-ingress-controller itself and it may 
+      # cause issues if port 10254 already is taken on the host that said, 
+      # since hostPort is broken on CNI:
+      # https://github.com/kubernetes/kubernetes/issues/31307
+      # we have to use hostNetwork where CNI is used like with kubeadm
+      # hostNetwork: true
+      terminationGracePeriodSeconds: 60
+      containers:
+      - name: nginx-ingress-controller
+        image: gcr.io/google_containers/nginx-ingress-controller:0.9.0-beta.3
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+          initialDelaySeconds: 10
+          timeoutSeconds: 1
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+        - name: https
+          containerPort: 443
+          protocol: TCP
+        - name: status
+          containerPort: 18080
+          protocol: TCP
+        env:
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+        args:
+        - /nginx-ingress-controller
+        - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
+        - --publish-service=$(POD_NAMESPACE)/nginx-ingress-controller
+        - --configmap=$(POD_NAMESPACE)/nginx-ingress-controller

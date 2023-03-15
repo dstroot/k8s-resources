@@ -1,0 +1,65 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis-master
+  # these labels can be applied automatically
+  # from the labels in the pod template if not set
+  labels:
+    app: redis-master
+    role: master
+    tier: backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-master
+        role: master
+        tier: backend
+    spec:
+      containers:
+      - name: redis-master
+        image: redis
+        command: ["redis-server", "/etc/redis/redis.conf"]
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+          - name: redis-server
+            containerPort: 6379
+        volumeMounts:
+            # Name must match the volume name below.
+          - name: redis-master-storage
+            # Mount path within the container
+            # If persistence is enabled, data is stored in the VOLUME /data
+            mountPath: /data
+          - name: config-volume
+            mountPath: /etc/redis
+      volumes:
+        - name: redis-master-storage
+          gcePersistentDisk:
+            # This GCE persistent disk must already exist.
+            pdName: redis-master
+            fsType: ext4
+        - name: config-volume
+          configMap:
+            name: redis-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-master
+  labels:
+    app: redis-master
+    role: master
+    tier: backend
+spec:
+  type: NodePort
+  ports:
+    - port: 6379  # service port
+      targetPort: redis-server # container port
+  selector:
+    app: redis-master
+    role: master
+    tier: backend

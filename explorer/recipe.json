@@ -1,0 +1,15 @@
+{
+  "recipeName": "Explorer",
+  "logo": "",
+  "recipe": "https://raw.githubusercontent.com/dstroot/k8s-resources/master/explorer/readme.md",
+  "description": "Explorer is a little container for examining the runtime environment kubernetes produces for your pods.",
+  "recipeAuthor": "Kubernetes",
+  "homepage": "",
+  "license": "",
+  "tags": [
+    "explorer"
+  ],
+  "files": [
+    "https://raw.githubusercontent.com/dstroot/k8s-resources/master/explorer/explorer.yaml"
+  ]
+}

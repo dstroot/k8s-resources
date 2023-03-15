@@ -1,0 +1,59 @@
+# No changes below are necessary.
+# create namespace first 
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nginx-ingress
+---
+# The resources will be created in the order they appear in the file. 
+# Therefore, it’s best to specify the service first, since that will 
+# ensure the scheduler can spread the pods associated with the service 
+# as they are created by the controller(s), such as Deployment.
+# https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
+apiVersion: v1
+kind: Service
+metadata:
+  name: default-http-backend
+  namespace: nginx-ingress
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: default-http-backend
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: default-http-backend
+  namespace: nginx-ingress
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: default-http-backend
+    spec:
+      containers:
+      - name: default-http-backend
+        # Any image is permissible as long as:
+        # 1. It serves a 404 page at /
+        # 2. It serves 200 on a /healthz endpoint
+        image: gcr.io/google_containers/defaultbackend:1.3
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 10m
+            memory: 20Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi

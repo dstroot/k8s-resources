@@ -1,0 +1,85 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: vault
+# spec:
+#   type: LoadBalancer   # LoadBalancer or NodePort
+#   loadBalancerIP: 130.211.126.76
+#   ports:
+#   - port: 8200
+#     targetPort: 8200
+#     protocol: TCP
+#   selector:
+#     app: vault
+# ---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: vault
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vault
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9102"
+    spec:
+      containers:
+      - name: vault
+        # Note IPC_LOCK is required in order for Vault to lock
+        # memory, which prevents it from being swapped to disk.
+        # This is highly recommended for *security*.
+        securityContext:
+          capabilities:
+            add:
+            - IPC_LOCK
+        image: vault:v0.6.0  # https://hub.docker.com/_/vault/
+        args:
+        - server
+        ports:
+        - containerPort: 8200
+        resources:
+          requests:
+            cpu: 10m
+            memory: 10Mi
+        volumeMounts:
+          - name: vault-volume
+            mountPath: /vault/file
+          - name: vault-config
+            mountPath: /vault/config
+          - name: vault-cert
+            mountPath: /etc/vault/tls
+            readOnly: true
+      - name: vault-metrics
+        image: prom/statsd-exporter:0.3.0  # https://hub.docker.com/r/prom/statsd-exporter/
+        args:
+        - -statsd.mapping-config=/vault-metrics/config/statsd-mapping.conf
+        - -statsd.add-suffix=false
+        ports:
+        - containerPort: 9102  # The address on which to expose the web interface and generated Prometheus metrics.
+        - containerPort: 9125  # The UDP address on which to receive statsd metric lines.
+          protocol: UDP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+          - name: vault-metrics-config
+            mountPath: /vault-metrics/config
+      restartPolicy: Always
+      volumes:
+      - name: vault-volume
+        gcePersistentDisk:
+          pdName: vault  # GCE persistent disk must already exist
+          fsType: ext4
+      - name: vault-config
+        configMap:
+          name: vault-config
+      - name: vault-cert
+        secret:
+          secretName: vault-cert
+      - name: vault-metrics-config
+        configMap:
+          name: vault-metrics-config

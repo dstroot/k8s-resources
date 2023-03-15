@@ -1,0 +1,71 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gitlab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitlab
+  template:
+    metadata:
+      name: gitlab
+      labels:
+        app: gitlab
+    spec:
+      containers:
+      - name: gitlab
+        image: gitlab-ce:08.13.0-ce.0
+        # imagePullPolicy: Always
+        resources:  # http://kubernetes.io/docs/user-guide/compute-resources/
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+          containerPort: 80
+          protocol: TCP
+          containerPort: 443
+          protocol: TCP
+          containerPort: 22
+          protocol: TCP
+        env:
+        - name: NODE_ENV
+          value: production # development # production
+        - name: DATABASE_TYPE
+          value: mysql
+        - name: DATABASE_HOST
+          value: mysql
+        - name: DATABASE_USER
+          value: root
+        - name: DATABASE_PASS
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: password
+        - name: DATABASE_DB
+          value: gitlab
+        - name: GHOST_URL
+          value: "http://kube.recipes"
+        - name: MAIL_TRANSPORT
+          value: SMTP  # SES
+        - name: MAIL_SERVICE  # 'Gmail', 'SES', 'Mailgun'
+          value: Gmail
+        - name: MAIL_USERNAME
+          value: "sbtpg.lajolla@gmail.com"
+        - name: MAIL_PASSWORD
+          value: aa853127
+        - name: MAIL_FROM
+          value: "\"Dan Stroot\" <dan.stroot@gmail.com>"  # "\"My Name\" <myemail@address.com>"
+        volumeMounts:
+        - name: gitlab
+          mountPath: /var/lib/gitlab/content
+        - name: gitlab-config
+          mountPath: /var/lib/gitlab
+      volumes:
+      - name: gitlab
+        gcePersistentDisk:
+          pdName: gitlab
+          fsType: ext4
+      - name: gitlab-config
+        configMap:
+          name: gitlab

@@ -1,0 +1,20 @@
+# Redis commander docker image
+FROM quay.io/trunk/alpine-node-kubernetes:6.2.1
+
+# Set environment variables.
+ENV \
+  TERM=xterm-color
+
+# Install packages.
+RUN \
+  apk --update add bash coreutils curl nano tar wget && \
+  rm -rf /var/cache/apk/*
+
+# Install node packages.
+RUN npm install -g redis-commander
+
+# Define the entrypoint script.
+CMD ["node", "redis-commander"]
+
+# Expose ports.
+EXPOSE 8081

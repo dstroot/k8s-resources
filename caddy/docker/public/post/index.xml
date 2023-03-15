@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Blog</title>
+    <link>https://danstroot.com/post/</link>
+    <description>Recent content in Posts on Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Jul 2017 10:25:35 -0800</lastBuildDate>
+    
+	<atom:link href="https://danstroot.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Internet != Smarter People</title>
+      <link>https://danstroot.com/2017/07/09/internet--smarter-people/</link>
+      <pubDate>Sun, 09 Jul 2017 10:25:35 -0800</pubDate>
+      
+      <guid>https://danstroot.com/2017/07/09/internet--smarter-people/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;I thought the Internet would make ignorant people smarter and more informed via better access to information, but instead the opposite happened. Ignorant people just polluted the Internet with ignorant information.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>The Inside-Out Corporation</title>
+      <link>https://danstroot.com/2017/04/10/the-inside-out-corporation/</link>
+      <pubDate>Mon, 10 Apr 2017 10:25:35 -0800</pubDate>
+      
+      <guid>https://danstroot.com/2017/04/10/the-inside-out-corporation/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/internet.jpg&#34; alt=&#34;the Internet&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using my personal laptop from any coffee shop, I can:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Access my bank account(s)&lt;/li&gt;
+&lt;li&gt;Access my retirement and brokerage accounts&lt;/li&gt;
+&lt;li&gt;Use my credit card to buy things&lt;/li&gt;
+&lt;li&gt;Review my medical test results&lt;/li&gt;
+&lt;li&gt;Send love notes to my wife&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are the most sensitive and private things I can imagine, and I can do these things &lt;strong&gt;securely from any untrusted network anywhere in the world&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;so-why-do-corporate-networks-still-exist&#34;&gt;So why do corporate networks still exist?&lt;/h3&gt;
+
+&lt;p&gt;Most companies still have a separate corporate network, protected by firewalls, intrusion prevention/detection, dedicated administrators, VPNs, etc. Why is it that I can access information which is the most important, private, and precious to me, from any computer, via any network, &lt;strong&gt;without all that extra cost, complexity, overhead, and effort?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>The Man Least Likely to Succeed in Politics</title>
+      <link>https://danstroot.com/2017/03/19/the-man-least-likely-to-succeed-in-politics/</link>
+      <pubDate>Sun, 19 Mar 2017 10:25:35 -0800</pubDate>
+      
+      <guid>https://danstroot.com/2017/03/19/the-man-least-likely-to-succeed-in-politics/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/Elvis-Nixon.png&#34; alt=&#34;Nixon meets Elvis&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Dick Nixon understood that getting the smart, popular kids to vote for you didn&amp;rsquo;t matter. He called the popular kids &amp;ldquo;Franklins&amp;rdquo; and he called his kind the &amp;ldquo;Orthogonians&amp;rdquo;.  Nixon discovered that being hated by the &amp;ldquo;Franklins&amp;rdquo; was no impediment to political success.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>I Feel the Need for Speed</title>
+      <link>https://danstroot.com/2017/01/10/i-feel-the-need-for-speed/</link>
+      <pubDate>Tue, 10 Jan 2017 10:25:35 -0800</pubDate>
+      
+      <guid>https://danstroot.com/2017/01/10/i-feel-the-need-for-speed/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/speed.png&#34; alt=&#34;San Francisco MOMA&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Today google released a &lt;a href=&#34;https://testmysite.withgoogle.com&#34;&gt;new tool&lt;/a&gt; to test how mobile friendly your website is.  Since I recently rebuilt this site and been using a variety of tools to test it I was excited to see how well the site scored.  The UI is very nice but you have to opt-in to email to get your detailed report. I am definitely not a fan of that &amp;ldquo;dark pattern&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Usually my go-to benchmark is the the venerable &lt;a href=&#34;https://developers.google.com/speed/pagespeed/insights/&#34;&gt;Google PageSpeed Insights&lt;/a&gt;. PageSpeed Insights is very clear about delivering actionable steps you can take to improve overall speed and performance.  Not too long ago Google also added a mobile section to give you insight about your mobile page performance as well.&lt;/p&gt;
+
+&lt;p&gt;However I recently adopted Google&amp;rsquo;s &lt;a href=&#34;https://github.com/GoogleChrome/lighthouse&#34;&gt;Lighthouse&lt;/a&gt; tool and found that to be exceptionally useful, particularly since it is service worker aware.  As a result this site will now run even when the network connection is severed on your mobile device. (Service workers should be a separate article)&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>If you are in San Francisco go visit MOMA</title>
+      <link>https://danstroot.com/2016/11/16/if-you-are-in-san-francisco-go-visit-moma/</link>
+      <pubDate>Wed, 16 Nov 2016 10:25:35 -0800</pubDate>
+      
+      <guid>https://danstroot.com/2016/11/16/if-you-are-in-san-francisco-go-visit-moma/</guid>
+      <description>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;img src=&#34;https://danstroot.com/img/sfmoma.jpg&#34; alt=&#34;San Francisco MOMA&#34; /&gt;&lt;/th&gt;
+&lt;th&gt;If you are in San Francisco go visit MOMA. Just go. Now.&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>There is No Such Thing as Not Voting</title>
+      <link>https://danstroot.com/2016/11/07/there-is-no-such-thing-as-not-voting/</link>
+      <pubDate>Mon, 07 Nov 2016 15:15:42 -0800</pubDate>
+      
+      <guid>https://danstroot.com/2016/11/07/there-is-no-such-thing-as-not-voting/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/dfw.jpg&#34; alt=&#34;David Foster Wallace&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;“If you are bored and disgusted by politics and don&amp;rsquo;t bother to vote, you are in effect voting for the entrenched establishments of the two major parties, who please rest assured are not dumb, and who are keenly aware that it is in their interests to keep you disgusted and bored and cynical and to give you every possible reason to stay at home doing one-hitters and watching MTV on primary day. By all means stay home if you want, but don&amp;rsquo;t bullshit yourself that you&amp;rsquo;re not voting. In reality, there is no such thing as not voting: you either vote by voting, or you vote by staying home and tacitly doubling the value of some diehard&amp;rsquo;s vote.”&lt;/p&gt;
+
+&lt;p&gt;&lt;cite&gt;&amp;mdash; David Foster Wallace&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Free to Believe Anything</title>
+      <link>https://danstroot.com/2016/10/30/free-to-believe-anything/</link>
+      <pubDate>Sun, 30 Oct 2016 19:50:04 -0700</pubDate>
+      
+      <guid>https://danstroot.com/2016/10/30/free-to-believe-anything/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/comic.png&#34; alt=&#34;Cognitive Bias&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When I was growing up, when you read the paper, watched the news, saw a film or a picture, you inherently believed in it.  You trusted the reality it portrayed. You trusted in journalism and even believed the news was actually &amp;ldquo;fair and balanced&amp;rdquo;. Then technology destroyed the business model of traditional journalism. The news institutions of the 20th century, print newspapers, the evening broadcast news, the trusted anchorman, are but relics of the past.&lt;/p&gt;
+
+&lt;p&gt;We turned to the Internet, but then we all learned the hard way that we can’t trust the Internet. We no longer know what is real and what is fake.  With everything now digital, and with excellent tools to edit audio, video, and photos, we have become skeptics. As soon as we see a viral video on YouTube we immediately say to ourselves “that’s fake”. Every magazine with a beautiful girl on the cover we think to ourselves “Photoshop”. When we read a blog post we think “spin”.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Microsoft Surface Studio is Mindblowing</title>
+      <link>https://danstroot.com/2016/10/29/microsoft-surface-studio-is-mindblowing/</link>
+      <pubDate>Sat, 29 Oct 2016 15:59:01 -0700</pubDate>
+      
+      <guid>https://danstroot.com/2016/10/29/microsoft-surface-studio-is-mindblowing/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/Surface_Studio.jpg&#34; srcset=&#34;https://danstroot.com/img/Surface_Studio2x.jpg 2x&#34; alt=&#34;{{ .Site.Author.name }}&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;Saw the new Microsoft Surface Studio this weekend at the Microsoft store at the South Coast Plaza. I thought the display is pretty mind blowing. I have gotten used to wide screen displays but somehow the resolution and format of the screen just feels right. The display floats in space and fills your field of vision.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Proprietary Software is an Unsafe Building Material</title>
+      <link>https://danstroot.com/2015/10/03/proprietary-software-is-an-unsafe-building-material/</link>
+      <pubDate>Sat, 03 Oct 2015 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2015/10/03/proprietary-software-is-an-unsafe-building-material/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/volkswagen.jpg&#34; alt=&#34;Volkswagen&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At one point in time I worked for an organization that banned the use of open source software.  They were concerned that in the event of issues &amp;ldquo;there would be no support&amp;rdquo;.  At the time they believed that commercial software from companies like IBM, Oracle, Microsoft and SAP was &amp;ldquo;safer&amp;rdquo; because there was a commercial entity that stood behind the products they sold and provided support.&lt;/p&gt;
+
+&lt;h3 id=&#34;now-that-s-changing&#34;&gt;Now that&amp;rsquo;s changing&lt;/h3&gt;
+
+&lt;p&gt;Most technology leadership today recognizes that proprietary software is not safer than open source software. Basic metrics around the number of disclosed vulnerabilities and &amp;ldquo;time to patch availability&amp;rdquo; seem to give an edge to open source software at least being patched faster.  Not only that but you have the option to inspect the code yourself, and patch it yourself - options that are simply not available with commercial, closed software. This causes a re-evaluation of the relationship of proprietary, commercial software to operating a safe and secure business.
+
+The recent Volkswagen scandal brings to light the broader question of how vulnerable we are to software that is beyond oversight.  Today when we have software running critical systems like medical devices, transportation systems, elevators, and cars we are realizing this code &lt;strong&gt;must&lt;/strong&gt; be open to inspection. This does not mean the code must be open source - only that the code must be available for inspection and oversight.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Is it Secure?</title>
+      <link>https://danstroot.com/2015/09/26/is-it-secure/</link>
+      <pubDate>Sat, 26 Sep 2015 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2015/09/26/is-it-secure/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/SmartCarLock.png&#34; alt=&#34;Security&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Q&lt;/em&gt;: Is it secure? &lt;br&gt;
+&lt;em&gt;A&lt;/em&gt;: No it is not. Security is never binary.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Q&lt;/em&gt;: OK, how secure is it? &lt;br&gt;
+&lt;em&gt;A&lt;/em&gt;: It seems like you just asked that question.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Q&lt;/em&gt;: No, the first question was if it&amp;rsquo;s secure, the second question was how secure is it. &lt;br&gt;
+&lt;em&gt;A&lt;/em&gt;: Well now that wasn&amp;rsquo;t even a question at all.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Why Automate Code Reviews?</title>
+      <link>https://danstroot.com/2015/09/06/why-automate-code-reviews/</link>
+      <pubDate>Sun, 06 Sep 2015 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2015/09/06/why-automate-code-reviews/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Ask a programmer to review 10 lines of code, they&amp;rsquo;ll make 10 suggestions. Ask them to review 1,000 lines of code and they&amp;rsquo;ll say &amp;ldquo;it looks good!&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Many people have begun integrating bots into the GitHub ecosystem for code review. For example the folks who created the Bootstrap UI framework created a bot called &lt;a href=&#34;https://github/twbs/rorshach&#34;&gt;rorshach&lt;/a&gt; to perform sanity checks on pull requests. If the sanity check fails it leaves a nice informative comment, explaining the issue and how to fix it.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>FinTech Startups Tug the Industry Forward</title>
+      <link>https://danstroot.com/2015/06/15/fintech-startups-tug-the-industry-forward/</link>
+      <pubDate>Mon, 15 Jun 2015 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2015/06/15/fintech-startups-tug-the-industry-forward/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/billguard.png&#34; alt=&#34;FinTech&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Financial services companies are among the most highly regulated industries in the world.  They also suffer from a trust issue.  Trust is a key ingredient in making a financial services business viable. Why would I ever buy insurance, banking services or invest my savings via a company that I didn’t trust?&lt;/p&gt;
+
+&lt;p&gt;After the sub-prime debt crisis in 2008 it became clear that the financial services industry would need to rebuild it’s image. Companies would need to zealously rebuild their brands to aspire to become “trusted advisors”. From an IT standpoint it is crystal clear that client and corporate data must be guarded and protected to prevent any loss as well as minimize the potential for damage to an organization’s reputation. How to manage the risk and yet stay innovative?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>The &#39;New&#39; New Microsoft</title>
+      <link>https://danstroot.com/2015/05/25/the-new-new-microsoft/</link>
+      <pubDate>Mon, 25 May 2015 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2015/05/25/the-new-new-microsoft/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/satya-nadella-microsoft-ceo.jpg&#34; alt=&#34;Microsoft&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been a fan of Microsoft during my whole technical career.  However I don&amp;rsquo;t recommend Microsoft any longer for server workloads, and haven&amp;rsquo;t for years due to the fact that the Linux ecosystem is far less expensive and has more innovative people working on it and sharing what they do openly. However, I am very impressed with the direction and leadership of Satya Nadella.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Make Big Bets</title>
+      <link>https://danstroot.com/2015/01/22/make-big-bets/</link>
+      <pubDate>Thu, 22 Jan 2015 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2015/01/22/make-big-bets/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/african_children.jpg&#34; alt=&#34;Children&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The Bill and Melinda Gates Foundation just released it&amp;rsquo;s &lt;a href=&#34;http://www.gatesnotes.com/2015-annual-letter?page=0&amp;amp;lang=en&amp;amp;WT.mc_id=01_21_2015_AL2015-GF_GFO_domain_Top_21&#34;&gt;annual letter&lt;/a&gt;.  I have come to look forward to these letters because I find them incredibly inspiring. This year instead of an annual update they are re-baselining and taking a fifteen year view of the future. As I read this year&amp;rsquo;s letter I was simultaneously moved, inspired and awed by the scope their mission:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;The lives of people in poor countries will improve faster in the next 15 years than &lt;strong&gt;at any other time in history&lt;/strong&gt;. And their lives will improve more than anyone else&amp;rsquo;s.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;&lt;cite&gt;&amp;mdash; 2015 Gates Annual Letter&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Keep it Simple... UX Design</title>
+      <link>https://danstroot.com/2015/01/13/keep-it-simple...-ux-design/</link>
+      <pubDate>Tue, 13 Jan 2015 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2015/01/13/keep-it-simple...-ux-design/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/iron_man.png&#34; alt=&#34;Iron Man&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Having done some user interface work over the break I discovered that my design approach was basically to:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Look around the web for things that I liked and then proceed to &amp;lsquo;borrow&amp;rsquo; their aesthetic.&lt;/li&gt;
+&lt;li&gt;Leverage UX/UI frameworks such as &lt;a href=&#34;http://getbootstrap.com&#34;&gt;Bootstrap&lt;/a&gt; or &lt;a href=&#34;http://foundation.zurb.com/&#34;&gt;Foundation&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>President Obama&#39;s Plan for a Free and Open Internet</title>
+      <link>https://danstroot.com/2014/11/10/president-obamas-plan-for-a-free-and-open-internet/</link>
+      <pubDate>Mon, 10 Nov 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/11/10/president-obamas-plan-for-a-free-and-open-internet/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/obama_internet.png&#34; alt=&#34;Obama Internet&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Today President Barack Obama has come out in favor of net neutrality in very public way.  He lays out in no uncertain terms that he believes no cable company or access provider should be able to put limits on access to the Internet. In addition, he’s suggesting that the FCC recognizes access to the Internet as a basic utility, and something that Americans have a basic right to. This means no blocking, no throttling, more transparency and no paid prioritization.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>USA&#39;s Digital Playbook</title>
+      <link>https://danstroot.com/2014/08/12/usas-digital-playbook/</link>
+      <pubDate>Tue, 12 Aug 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/08/12/usas-digital-playbook/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/USDS_Playbook.png&#34; alt=&#34;Digital Playbook&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The White House announced on Monday, August 11th 2014, that it is formally launching a new U.S. Digital Service and that it has hired Mikey Dickerson to lead it.  Mickey Dickerson is an engineer widely credited with playing a central role in salvaging HealthCare.gov. The idea behind the USDS is institutionalizing the approach that saved the US health care website.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>From &#39;Open Government&#39; to &#39;Open Corporation&#39;</title>
+      <link>https://danstroot.com/2014/07/01/from-open-government-to-open-corporation/</link>
+      <pubDate>Tue, 01 Jul 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/07/01/from-open-government-to-open-corporation/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/data_gov.png&#34; alt=&#34;Digital Playbook&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;let-s-talk-about-open-government-first&#34;&gt;Let&amp;rsquo;s Talk About Open Government First&lt;/h3&gt;
+
+&lt;p&gt;President Barack Obama, on his first day in office in 2009, signed an executive order stating that all government information that did not have to be kept secret for security or privacy reasons should be made public. The administration also launched the Open Data Initiative to publish government data and the &lt;a href=&#34;http://www.data.gov/&#34;&gt;data.gov&lt;/a&gt; website to distribute the data.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;My Administration is committed to creating an unprecedented level of openness in Government. We will work together to ensure the public trust and establish a system of transparency, public participation, and collaboration. Openness will strengthen our democracy and promote efficiency and effectiveness in Government.&lt;/p&gt;
+
+&lt;p&gt;_&lt;a href=&#34;http://www2.gwu.edu/~nsarchiv/news/20090121/2009_transparency_memo.pdf&#34;&gt;President Barack Obama, January 21, 2009&lt;/a&gt;_&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CoreOS: thousands of machines and millions of Docker containers... no hypervisor needed.</title>
+      <link>https://danstroot.com/2014/06/29/coreos-thousands-of-machines-and-millions-of-docker-containers...-no-hypervisor-needed./</link>
+      <pubDate>Sun, 29 Jun 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/06/29/coreos-thousands-of-machines-and-millions-of-docker-containers...-no-hypervisor-needed./</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/coreos-logo.png&#34; alt=&#34;CoreOS&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I have been playing around with CoreOS to get a sense of how everything works. The vision of this project is incredible.&lt;/p&gt;
+
+&lt;p&gt;CoreOS describes itself as &lt;em&gt;&amp;ldquo;a new Linux distribution that has been re-architected to provide features needed to run modern infrastructure stacks. The strategies and architectures that influence CoreOS allow companies like Google, Facebook and Twitter to run their services at scale with high resilience.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;CoreOS displaces hypervisors and machine virtualization in favor of Docker and Linux containers.  CoreOS uses Linux containers to manage your services at a high level of abstraction. A single service&amp;rsquo;s code and all dependencies are packaged within a container that can be run on one or many CoreOS machines.&lt;/p&gt;
+
+&lt;p&gt;Clustering works across platforms, meaning there is no cloud vendor lock-in. For example, CoreOS runs on Amazon EC2, Rackspace, QEMU/KVM, VMware and OpenStack and your own hardware. Running a single CoreOS cluster on multiple different clouds or cloud + bare metal is supported and encouraged. This lack of lock-in is the reason why I have supported OpenStack and CoreOS takes this even further.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Virtual Machines vs Containers</title>
+      <link>https://danstroot.com/2014/05/05/virtual-machines-vs-containers/</link>
+      <pubDate>Mon, 05 May 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/05/05/virtual-machines-vs-containers/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/docker.png&#34; alt=&#34;Docker&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Three driving forces of infrastructure efficiency in a large, distributed environment were:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Data center consolidation &lt;em&gt;(KPI: How many DCs do you have?)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Host virtualization &lt;em&gt;(KPI: what percentage of your servers are virtual?)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Cloud&amp;rdquo; in its various forms &lt;em&gt;(KPI: How many servers are you still running?)&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assuming you have been aggresive you may not have any data centers left.  You may be buying services rather than servers, and/or all of your remaining machines might be virtualized and hosted in someone else&amp;rsquo;s data center. Now what?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Enterprise Search 2014</title>
+      <link>https://danstroot.com/2014/03/14/enterprise-search-2014/</link>
+      <pubDate>Fri, 14 Mar 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/03/14/enterprise-search-2014/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/Google_Enterprise_Search.png&#34; alt=&#34;Google Enterprise Search&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;One of the challenges in a large distributed enterprise is &amp;ldquo;finding stuff&amp;rdquo;.  Sure we call it collaboration, knowledge management, or any number of other sophisticated terms but often it boils down to just finding stuff.&lt;/p&gt;
+
+&lt;p&gt;To compensate the organization reacts by saving multiple copies and versions of a file in many different locations: email, shared file systems, intranets, etc.  Of course this compounds the issue and drives the desire to save &amp;ldquo;my copy&amp;rdquo; to &amp;ldquo;somewhere where I can find it&amp;rdquo;.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Happy Birthday Steve</title>
+      <link>https://danstroot.com/2014/02/24/happy-birthday-steve/</link>
+      <pubDate>Mon, 24 Feb 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/02/24/happy-birthday-steve/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/SteveJobsCloseUp-lg.jpg&#34; alt=&#34;Steve Jobs&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Remembering my friend Steve on his birthday. &amp;quot;Stay hungry, Stay foolish&amp;quot;. We honor him by continuing the work he loved so much.&lt;/p&gt;&amp;mdash; Tim Cook (@tim_cook) &lt;a href=&#34;https://twitter.com/tim_cook/status/437966455229804545&#34;&gt;February 24, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>IPv6 Gets Real</title>
+      <link>https://danstroot.com/2014/02/18/ipv6-gets-real/</link>
+      <pubDate>Tue, 18 Feb 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/02/18/ipv6-gets-real/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/IPv6-google.jpg&#34; alt=&#34;IPv6&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Google’s IPv6 measurements crossed the 3% milestone just under five months from when the 2% milestone was crossed.  Prior to that it had taken 11 months to go from 1% to 2%.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Soul Crushing Exercise</title>
+      <link>https://danstroot.com/2014/02/07/a-soul-crushing-exercise/</link>
+      <pubDate>Fri, 07 Feb 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/02/07/a-soul-crushing-exercise/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/soulcrushing.jpg&#34; alt=&#34;Soul Crushing&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This morning I saw a post on LinkedIn by Bob Sutton who is a Stanford Professor and Co-author of Scaling up Excellence.  He discusses Adobe&amp;rsquo;s move to abolish it&amp;rsquo;s employee stack ranking system.  After the system was eliminated, one Adobe employee noted that a feeling of relief spread throughout the company because the old annual review system was &lt;strong&gt;“a soul-less and soul crushing exercise.”&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Fixing Windows 8</title>
+      <link>https://danstroot.com/2014/02/01/fixing-windows-8/</link>
+      <pubDate>Sat, 01 Feb 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/02/01/fixing-windows-8/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/windows8.jpg&#34; alt=&#34;Windows 8&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I just saw &lt;a href=&#34;http://jaymachalani.com/blog/2013/12/12/fixing-windows-8&#34;&gt;this piece&lt;/a&gt; by Jay Machalani about restructuring the UI/UX of Windows 8.  It&amp;rsquo;s a brilliant piece of work!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Facebook Saves a BILLION Dollars via Open Compute Designs</title>
+      <link>https://danstroot.com/2014/01/28/facebook-saves-a-billion-dollars-via-open-compute-designs/</link>
+      <pubDate>Tue, 28 Jan 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/01/28/facebook-saves-a-billion-dollars-via-open-compute-designs/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/fb-server.jpg&#34; alt=&#34;Facebook Server&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Last week, IBM announced that it was selling its low-end server business to Chinese hardware manufacturer Lenovo. The deal has been widely viewed as the logical result of the commoditization of x86-based servers, in much the same way PCs were commoditized a decade ago.&lt;/p&gt;
+
+&lt;p&gt;This week Microsoft announced it is joining the Open Compute Project and will “open source” its server designs, sharing them with the world at large.  Microsoft joins Facebook, Google, Amazon, Bloomberg, Intel, Box and many others.  Microsoft will be contributing designs for the servers that power global cloud services like Windows Azure, Office 365, and Bing.
+
+It&amp;rsquo;s clear that the server business is never going to be same.  For Microsoft open source goes against it&amp;rsquo;s DNA, and for IBM the server business was viewed as core not so long ago.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Awkward: Bill Gates Notices Jimmy Fallon Uses a Mac</title>
+      <link>https://danstroot.com/2014/01/22/awkward-bill-gates-notices-jimmy-fallon-uses-a-mac/</link>
+      <pubDate>Wed, 22 Jan 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/01/22/awkward-bill-gates-notices-jimmy-fallon-uses-a-mac/</guid>
+      <description>&lt;p&gt;
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/Qk7pPutimCM&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;Last night Bill Gates was a guest on Late Night with Jimmy Fallon to talk about his charitable work. The man has &lt;strong&gt;eliminated polio in India!&lt;/strong&gt;  However the segment takes an awkward turn when Bill starts eying Jimmy’s MacBook. This made me laugh&amp;hellip;it&amp;rsquo;s about 1:35 into the video&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Billion Dollar March Madness Bracket</title>
+      <link>https://danstroot.com/2014/01/22/billion-dollar-march-madness-bracket/</link>
+      <pubDate>Wed, 22 Jan 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/01/22/billion-dollar-march-madness-bracket/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/ncaa-brackets.jpg&#34; alt=&#34;NCAA Bracket&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Quicken Loans and Warren Buffet annouced a billion dollar prize for a perfect NCAA college bracket prediction. As Quicken Loans puts it:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You read that right: one billion. Not one million. Not one hundred million. Not five hundred million. One billion U.S. dollars.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;why-give-away-a-billion-dollars&#34;&gt;Why Give Away a Billion Dollars?&lt;/h3&gt;</description>
+    </item>
+    
+    <item>
+      <title>NY FinTech Community is Thriving</title>
+      <link>https://danstroot.com/2014/01/13/ny-fintech-community-is-thriving/</link>
+      <pubDate>Mon, 13 Jan 2014 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/01/13/ny-fintech-community-is-thriving/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/new-ui.jpg&#34; alt=&#34;FX Trading UI&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I was reading up on the &amp;ldquo;MEAN&amp;rdquo; stack: Mongo, Express, Angular and Node and came across a blog post from &lt;a href=&#34;http://francescak.me/blog/2013/04/09/fintech-hackathon-recap/&#34;&gt;Francesca Krihely&lt;/a&gt; about the FinTech hackathon in NY from back in April, 2013.&lt;/p&gt;
+
+&lt;p&gt;This interested me because as a former &amp;ldquo;insider&amp;rdquo; in a large financial services company I can see clearly how open source code and tooling is replacing more proprietry code and tooling (for example .net/visual studio) but it requires an entirely different skill set for internal developers.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Technology Adoption Curves vs. Birth Year and Life Expectancy</title>
+      <link>https://danstroot.com/2014/01/03/technology-adoption-curves-vs.-birth-year-and-life-expectancy/</link>
+      <pubDate>Fri, 03 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/01/03/technology-adoption-curves-vs.-birth-year-and-life-expectancy/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/adoption_curve.jpg&#34; alt=&#34;Adoption Curve&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Asymco has done a fascinating piece of research mapping technology adoption curves, technology refresh rates, and human lifespan, to predict technology lifetime ownership.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;rdquo;&amp;hellip;knowing how what innovations become universal and the speed at which these technologies are replaced can give us an idea of what individuals might experience [own] in their lifetimes.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Supercomputer Weather Visualization in a Browser</title>
+      <link>https://danstroot.com/2014/01/02/supercomputer-weather-visualization-in-a-browser/</link>
+      <pubDate>Thu, 02 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2014/01/02/supercomputer-weather-visualization-in-a-browser/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/earth_wind_map.jpg&#34; alt=&#34;Earth&#39;s Weather&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a pretty amazing technology demonstration of what is possible using the currently available open source tooling, open source data, and using cloud service providers for hosting and content delivery.  It was written by Cameron Beccario (@cambecc). Check it out below.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Responsive Design vs. Mobile-First</title>
+      <link>https://danstroot.com/2013/12/31/responsive-design-vs.-mobile-first/</link>
+      <pubDate>Tue, 31 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2013/12/31/responsive-design-vs.-mobile-first/</guid>
+      <description>&lt;p&gt;I have heard some people speak of &amp;ldquo;mobile-first&amp;rdquo; and &amp;ldquo;responsive design&amp;rdquo; interchangeably making them sound as if they were one and the same.  However I think there are some subtle differences.  I believe responsive design is the broadest possible definition. It says to me that we are going to target all platforms, screen sizes, pixel densities, etc.  It means that the user experience will be custom tailored to the exact device you just happen to be viewing it with. This should be our ulimate goal, right?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Apple&#39;s Astounding Capital Expenditures</title>
+      <link>https://danstroot.com/2013/10/30/apples-astounding-capital-expenditures/</link>
+      <pubDate>Wed, 30 Oct 2013 10:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2013/10/30/apples-astounding-capital-expenditures/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/iSpaceship.jpg&#34; alt=&#34;Earth&#39;s Weather&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Apple’s most recent 10-K filing with the U.S. Securities and Exchange Commission shows the company has budgeted &lt;strong&gt;$11 billion in capital expenditures for fiscal 2014&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is more than &lt;strong&gt;5 times&lt;/strong&gt; Apple&amp;rsquo;s capital expenditure in 2010 and &lt;strong&gt;57 percent more than the $7 billion it spent in 2013&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Intrinsic Bias</title>
+      <link>https://danstroot.com/2013/10/15/intrinsic-bias/</link>
+      <pubDate>Tue, 15 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2013/10/15/intrinsic-bias/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/bias.jpg&#34; alt=&#34;Bias&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As a CIO in a large, publicly owned financial services company I held the responsibility of keeping our client&amp;rsquo;s (and our organization’s) data safe and secure.  As the economics of cloud services became compelling the largest hurdle to adoption was &amp;ldquo;potential security risks&amp;rdquo;, by a large measure.&lt;/p&gt;
+
+&lt;p&gt;Let me explain what I mean by &amp;ldquo;potential security risks&amp;rdquo;.   Recently Ben Fried, Google&amp;rsquo;s CIO, made a &lt;a href=&#34;http://allthingsd.com/20131010/google-cio-ben-fried-on-how-google-works/&#34;&gt;remark about Dropbox&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;“The important thing to understand about Dropbox,” Fried said, “is
+that when your users use it in a corporate context, &lt;strong&gt;your corporate
+data is being held in someone else’s data center.&lt;/strong&gt;”&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;(Emphasis added)&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Work Like Hell</title>
+      <link>https://danstroot.com/2013/10/04/work-like-hell/</link>
+      <pubDate>Fri, 04 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2013/10/04/work-like-hell/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/elon-musk.jpg&#34; alt=&#34;Elon Musk&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;If other people are putting in 40-hour workweeks, and you&amp;rsquo;re
+putting in 100-hour workweeks, then, even if you&amp;rsquo;re doing the same
+thing, you will achieve in four months what it takes them a year
+to achieve.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;- Elon Musk&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Only Usain Bolt Looks at the Clock</title>
+      <link>https://danstroot.com/2013/08/01/only-usain-bolt-looks-at-the-clock/</link>
+      <pubDate>Thu, 01 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2013/08/01/only-usain-bolt-looks-at-the-clock/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/Usain-Bolt-Opt.jpg&#34; alt=&#34;Usain Bolt&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you watch someone run the 100 meters, they sneak glances around. Sprinters watch each other while they run.  They want to know where are in the pack and what place they might get.  I noticed that only Usain Bolt looks at the clock.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Great Web Product Images: PlaceIt</title>
+      <link>https://danstroot.com/2013/07/30/great-web-product-images-placeit/</link>
+      <pubDate>Tue, 30 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2013/07/30/great-web-product-images-placeit/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/breezi_placeit2.jpg&#34; alt=&#34;Product Placement&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Saw this today on &lt;a href=&#34;https://news.ycombinator.com/news&#34;&gt;Hacker News&lt;/a&gt;.  Perfect timing as I was looking to create some images for this blog.  I think it works pretty well for about 30 seconds of effort.  Well done guys!&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the &lt;a href=&#34;http://placeit.breezi.com/productshots/&#34;&gt;link&lt;/a&gt; if you want to try it.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hosting your Blog on Amazon S3</title>
+      <link>https://danstroot.com/2013/07/25/hosting-your-blog-on-amazon-s3/</link>
+      <pubDate>Thu, 25 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2013/07/25/hosting-your-blog-on-amazon-s3/</guid>
+      <description>&lt;p&gt;One of the cleanest designed blogs I have seen in a while belongs to &lt;a href=&#34;http://blog.yourkarma.com/&#34;&gt;Karma Mobility&lt;/a&gt;.  So I asked in the comments on a particularly interesting post by Stefan Borsje and he very nicely responded &amp;ldquo;Thanks Daniel! This blog uses Jekyll and is hosted on S3.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;Hmmm.  That&amp;rsquo;s two cool things at once.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Risk Mitigation Costs Too Much</title>
+      <link>https://danstroot.com/2012/11/16/risk-mitigation-costs-too-much/</link>
+      <pubDate>Fri, 16 Nov 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2012/11/16/risk-mitigation-costs-too-much/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/edison.jpg&#34; alt=&#34;Thomas Edison&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Many large organizations work exceptionally hard minimize &amp;ldquo;risk&amp;rdquo;.   Ironically, by working so diligently to reduce risk they are paying for it anyway, and reducing innovation at the same time.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Minority Report and Big Data</title>
+      <link>https://danstroot.com/2012/10/21/minority-report-and-big-data/</link>
+      <pubDate>Sun, 21 Oct 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2012/10/21/minority-report-and-big-data/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/minorityreport.jpg&#34; alt=&#34;Minority Report&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The United Arab Emirates holds the largest biometric database in
+the world, the Emirates Identity Authority has announced. The
+population register of Emirates ID has over &lt;strong&gt;103 million digital
+fingerprints and over 15 million digital facial recognition
+records&lt;/strong&gt;, which includes multiple records of each UAE resident,
+and digital signatures as of October 11, senior officials said.&lt;/p&gt;
+
+&lt;p&gt;Dr. Ali Al Khoury, Director General of Emirates ID, said the
+authority has submitted an official application to the World
+Record Academy to recognize this record. Asked about the
+confirmation of the authority’s claims about the world record, an
+official spokesman of the authority told Gulf News on Sunday: &amp;ldquo;We
+have made worldwide surveys and inquiries with the similar
+official authorities and agencies of the world governments holding
+such databases and confirmed that our database is the largest. The
+World Record Academy also confirmed to us that no other government
+or authority has made a similar claim for such a record.&amp;rdquo; 1&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TEDx Orange Coast 2012</title>
+      <link>https://danstroot.com/2012/10/11/tedx-orange-coast-2012/</link>
+      <pubDate>Thu, 11 Oct 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2012/10/11/tedx-orange-coast-2012/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/TEDx-logo.jpg&#34; alt=&#34;TEDx&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Yesterday I had the pleasure of mental stimulation.  The theme of the TEDx OC conference was relevance.  Specifically how do you stay relevant in today’s world?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Apple Reaches for Greatness Without Apology</title>
+      <link>https://danstroot.com/2012/05/02/apple-reaches-for-greatness-without-apology/</link>
+      <pubDate>Wed, 02 May 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2012/05/02/apple-reaches-for-greatness-without-apology/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/SteveJobsCloseUp-lg.jpg&#34; alt=&#34;Steve Jobs&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;I haven’t got any sort of odd chip on my shoulder about proving anything to myself or anybody else.  And remember, though the outside world looks at success from a numerical point of view, my yardstick might be quite different than that.  My yardstick may be how every computer that’s designed from here on out will have to be at least as good as a Macintosh.
+&lt;em&gt;– &lt;a href=&#34;http://www.newsweek.com/1985/09/30/jobs-talks-about-his-rise-and-fall.print.html&#34;&gt;Steve Jobs, 1985&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>20.5 Million hits a day using an Amazon Micro server ($15 a month) and Node.js</title>
+      <link>https://danstroot.com/2012/04/30/20.5-million-hits-a-day-using-an-amazon-micro-server-15-a-month-and-node.js/</link>
+      <pubDate>Mon, 30 Apr 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2012/04/30/20.5-million-hits-a-day-using-an-amazon-micro-server-15-a-month-and-node.js/</guid>
+      <description>&lt;p&gt;I have been building a website recently just to get current with the latest web technologies and scaling.  I  saw this post on Hacker News: &lt;a href=&#34;http://www.ewanleith.com/blog/900/10-million-hits-a-day-with-wordpress-using-a-15-server&#34; title=&#34;10 Million hits a day with WordPress using a $15 server&#34;&gt;10 Million hits a day with WordPress using a $15 server&lt;/a&gt; and was intrigued.  It was time to benchmark one of my own applications (&lt;a href=&#34;http://www.vizilinkz.com/&#34; title=&#34;ViziLinkz&#34;&gt;vizilinkz.com&lt;/a&gt;) since it also runs on an Amazon Micro server for now as my development/production machine.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Transparency Wins</title>
+      <link>https://danstroot.com/2012/01/03/transparency-wins/</link>
+      <pubDate>Tue, 03 Jan 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2012/01/03/transparency-wins/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/google_docs.jpg&#34; alt=&#34;Google Docs&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://bconnected-project.berkeley.edu/about/email-calendar-platform-comparison&#34;&gt;UC Berkeley just did a great assessment of Office 365 vs. Google Apps&lt;/a&gt;.  What I really like is how they were able to make the results easy to understand for their constituency.&lt;/p&gt;
+
+&lt;p&gt;I often struggle to communicate large, impactful descisions across a large organization.  They did a great job with the &amp;ldquo;Assessment Matrix&amp;rdquo; matrix they created that clearly spells out each function by priority, and which platform &amp;ldquo;wins&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;In this case I think transparency wins.  Good example to learn from!&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>The Corporate iCloud, part 2</title>
+      <link>https://danstroot.com/2011/12/22/the-corporate-icloud-part-2/</link>
+      <pubDate>Thu, 22 Dec 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2011/12/22/the-corporate-icloud-part-2/</guid>
+      <description>When Apple introduced iCloud I wrote an article about the potential impact in the corporate computing space: The Corporate iCloud.
+In the article I compared what I was doing with Dropbox as a potential corporate version of iCloud. It turns out there was a LOT more there than meets the eye. Dropbox may even have become iCloud had some things gone a bit differently.
+Wired has done a deep dive on this topic.</description>
+    </item>
+    
+    <item>
+      <title>The Corporate iCloud</title>
+      <link>https://danstroot.com/2011/06/10/the-corporate-icloud/</link>
+      <pubDate>Fri, 10 Jun 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2011/06/10/the-corporate-icloud/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/icloud2.jpg&#34; alt=&#34;iCloud&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Apple’s announcements at this year’s WWDC keynote will have far reaching effects.  Much has already been written about the impacts to you and me as consumers of Apple products.  But let’s stop and think for a moment about how this will affect our perceptions about technology, and how that will translate into the corporate IT space.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iPad Security Vulnerability: Fingerprints</title>
+      <link>https://danstroot.com/2010/04/28/ipad-security-vulnerability-fingerprints/</link>
+      <pubDate>Wed, 28 Apr 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2010/04/28/ipad-security-vulnerability-fingerprints/</guid>
+      <description>I have noticed a security vulnerability on the iPad – fingerprints! Each time I use my iPad I have to type in my four digit security code. This leaves four fingerprints telling you very clearly what four digits I use.
+Now you only have to guess the order, and there are only 16 possible combinations. Unless I wipe the screen each time this makes it really easy to hack my iPad if it was lost or stolen.</description>
+    </item>
+    
+    <item>
+      <title>iPad Goes Corporate</title>
+      <link>https://danstroot.com/2010/01/29/ipad-goes-corporate/</link>
+      <pubDate>Fri, 29 Jan 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2010/01/29/ipad-goes-corporate/</guid>
+      <description>&lt;p&gt;Like many people in the Technology world I watched Apple&amp;rsquo;s iPad announcement this week with intense interest.  Unlike most people I am interested not in the consumer space  - but rather how could this device be used for business.  How could a new category like this be used?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Lessons from Haiti- Never Under Estimate Ease of Use</title>
+      <link>https://danstroot.com/2010/01/15/lessons-from-haiti--never-under-estimate-ease-of-use/</link>
+      <pubDate>Fri, 15 Jan 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://danstroot.com/2010/01/15/lessons-from-haiti--never-under-estimate-ease-of-use/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://danstroot.com/img/haiti.jpg&#34; alt=&#34;Haiti&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;My assistant Kathy told me today about donating to Haitian relief efforts by simply sending a text message from my cellphone.  The Red Cross, via a company called mGive, has got the major U.S. carriers on board to allow people to very easily donate $10 to the Red Cross via a simple SMS text message.&lt;/p&gt;
+
+&lt;p&gt;This led to an &amp;ldquo;unprecedented mobile response,&amp;rdquo; and has raised over $10 million in relief for Haiti.  With text donations peaking at a rate of 10,000 a minute, at $10 per donation, this is raising $100,000 per minute!&lt;/p&gt;
+
+&lt;p&gt;I had been watching the news about Haiti and was heartbroken at what they are going through.  I wanted to help.  But did I?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

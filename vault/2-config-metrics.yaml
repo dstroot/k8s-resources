@@ -1,0 +1,19 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: vault-metrics-config
+  namespace: default
+data:
+  statsd-mapping.conf: |
+    test.dispatcher.*.*.*
+    name="dispatcher_events_total"
+    processor="$1"
+    action="$2"
+    outcome="$3"
+    job="test_dispatcher"
+
+    *.signup.*.*
+    name="signup_events_total"
+    provider="$2"
+    outcome="$3"
+    job="${1}_server"

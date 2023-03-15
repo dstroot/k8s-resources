@@ -1,0 +1,1 @@
+`echo "$(minikube ip) pgadmin.local" | sudo tee -a /etc/hosts`

@@ -1,0 +1,139 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: monitoring
+  labels:
+    app: grafana
+    component: core
+spec:
+  # type: NodePort
+  ports:
+  - port: 3000
+    targetPort: 4180
+    protocol: TCP
+  selector:
+    app: grafana
+    component: core
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: grafana
+  namespace: monitoring
+  labels:
+    app: grafana
+    component: core
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grafana
+        component: core
+    spec:
+      containers:
+      - name: grafana
+        image: grafana/grafana:4.2.0  # https://hub.docker.com/r/grafana/grafana/tags/
+        imagePullPolicy: IfNotPresent #Always
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        resources:
+          # keep request = limit to keep this container in guaranteed class
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        # All options defined in conf/grafana.ini can be overriden using environment variables
+        env:
+        - name: GF_SERVER_ROOT_URL
+          value: https://monitor.thepishoppe.com
+        - name: GF_AUTH_BASIC_ENABLED
+          value: "false"
+        # - name: GF_AUTH_ANONYMOUS_ENABLED
+        #   value: "true"
+          # Pass the plugins you want installed with the GF_INSTALL_PLUGINS
+          # environment variable as a comma separated list.
+        - name: GF_INSTALL_PLUGINS
+          value: "grafana-clock-panel,grafana-simple-json-datasource"
+        - name: GF_SECURITY_ADMIN_USER
+          valueFrom:
+            secretKeyRef:
+              name: grafana-secret
+              key: user.txt
+        - name: GF_SECURITY_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: grafana-secret
+              key: password.txt
+        volumeMounts:
+          - name: grafana-volume
+            mountPath: /var/lib/grafana
+      - name: oauth2-proxy
+        image: dstroot/oauth2_proxy:1.0.4
+        imagePullPolicy: IfNotPresent #Always
+        # The GitHub auth provider supports two additional parameters to restrict 
+        # authentication to Organization or Team level access. Restricting by 
+        # org and team is normally accompanied with --email-domain=*
+        # -github-org="": restrict logins to members of this organisation
+        # -github-team="": restrict logins to members of any of these teams, separated by a comma
+        # Make a secret: python -c 'import os,base64; print base64.b64encode(os.urandom(16))'
+        args:
+          - "-upstream=http://localhost:3000/"
+          - "-provider=github"
+          - "-cookie-secure=true"
+          - "-cookie-expire=48h0m"
+          - "-cookie-refresh=60m"
+          - "-cookie-secret=JU2DFqZC8aB4hD1c6V1fBQ=="
+          - "-cookie-domain=monitor.thepishoppe.com"
+          - "-http-address=0.0.0.0:4180"
+          - "-redirect-url=https://monitor.thepishoppe.com/oauth2/callback"
+          - "-email-domain=*"
+          - "-client-id=7d74f2018813cee2a6da"
+          - "-client-secret=8d588c5d7ad96745a9275b69dce8d502c74582e5"
+          # - "-pass-basic-auth=true"
+          # - "-pass-user-headers=true"
+          # - "-pass-host-header=true"
+        ports:
+        - containerPort: 4180
+      restartPolicy: Always
+      volumes:
+      - name: grafana-volume
+        gcePersistentDisk:
+          pdName: grafana  # GCE persistent disk must already exist
+          fsType: ext4
+# ---
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: grafana
+#   # namespace: grafana
+#   # The annotations below make the magic happen
+#   # GKE has a native ingress controller, so to *not* use the native one:
+#   #  Set the annotation `kubernetes.io/ingress.class: "nginx"`
+#   #  Set the annotation `kubernetes.io/tls-acme: "true"` for automatic TLS
+#   annotations:
+#     kubernetes.io/tls-acme: "true"
+#     kubernetes.io/ingress.class: "nginx"
+# spec:
+#   tls:
+#   # Setup a CNAME to point to the LB IP address
+#   - hosts:
+#     - traefik.thepishoppe.com
+#     secretName: grafana-tls
+#   rules:
+#   - host: traefik.thepishoppe.com
+#     http:
+#       paths:
+#       - path: /
+#         backend:
+#           serviceName: grafana
+#           servicePort: 80

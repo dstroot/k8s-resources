@@ -1,0 +1,1 @@
+This is a docker images that leverages NGINX to service static files out of anything you put in the "www" folder.  Put your static website into "www" and build the docker image using the Makefile. This example pushes to both Docker Hub and a private repo on Google Cloud.

@@ -1,0 +1,56 @@
+# This version is for NGINX Ingress 
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: hello
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - image: us.gcr.io/splendid-timer-160003/hello:latest   #dstroot/hello  # tutum/hello-world
+        # imagePullPolicy: Always
+        name: hello
+        ports:
+        - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello
+  # The annotations below make the magic happen
+  # GKE has a native ingress controller, so to *not* use the native one:
+  #  Set the annotation `kubernetes.io/ingress.class: "nginx"`
+  #  Set the annotation `kubernetes.io/tls-acme: "true"` for automatic TLS
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  # Setup a CNAME to point to the LB IP address
+  - hosts:
+    - thepishoppe.com
+    secretName: hello-tls
+  rules:
+  - host: thepishoppe.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hello
+          servicePort: 80

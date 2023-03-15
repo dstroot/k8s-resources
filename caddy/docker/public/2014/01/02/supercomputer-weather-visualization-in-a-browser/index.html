@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Dan Stroot &middot; Supercomputer Weather Visualization in a Browser</title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="theme-color" content="#202020">
+
+  
+  <link rel="manifest" href="https://danstroot.com/manifest.json">
+
+  
+  <link rel="stylesheet" href="https://danstroot.com/css/styles.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+
+  
+  <link rel="icon" href="https://danstroot.com/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=152">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=120">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=76">
+  <link rel="apple-touch-icon-precomposed" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=60">
+
+  
+  
+  
+  
+
+  
+  
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-44765020', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+</head>
+
+<body class=" ">
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+
+
+    <div class="myface">
+      <a href="https://danstroot.com/">
+        <img src="https://danstroot.com/img/face_sm.jpg" srcset="https://danstroot.com/img/face_lg.jpg 2x" alt="Dan Stroot" height="150" width="150">
+        <i class="icon-home"></i>
+      </a>
+    </div>
+
+    <div class="sidebar-about">
+      <a href="https://danstroot.com/"><h1>Dan Stroot</h1></a>
+      <p class="lead">I love building things. Made in California. Family man, technologist and Hacker News aficionado. Eternally curious.</p>
+    </div>
+
+    <hr class="hr-sidebar">
+
+    
+
+    <a href="https://danstroot.com/about">About</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://danstroot.com/post">Archive</a>
+
+    <hr class="hr-sidebar">
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/dstroot"><span class="icon-github-square"></span></a>
+      <a href="https://www.linkedin.com/in/danstroot"><span class="icon-linkedin-square"></span></a>
+      <a href="https://www.facebook.com/dan.stroot"><span class="icon-facebook-square"></span></a>
+      <a href="https://twitter.com/danstroot"><span class="icon-twitter-square"></span></a>
+      
+      </li>
+    </ul>
+
+    
+
+    <p class="small">Copyright &copy; 2017</p>
+
+  </div>
+</div>
+
+
+  <div class="content container">
+    <div class="post">
+
+      <h1 class="post-title">Supercomputer Weather Visualization in a Browser</h1>
+
+      
+      <span class="post-date">January 2, 2014 &middot; <span class="icon-clock-o"></span> 1 minute read &middot; <a href="https://danstroot.com/2014/01/02/supercomputer-weather-visualization-in-a-browser/#disqus_thread">Comments</a>  
+      
+      <br/>
+      
+      </span>
+
+      
+      <div class="post-content">
+      <p><img src="https://danstroot.com/img/earth_wind_map.jpg" alt="Earth's Weather" /></p>
+
+<p>This is a pretty amazing technology demonstration of what is possible using the currently available open source tooling, open source data, and using cloud service providers for hosting and content delivery.  It was written by Cameron Beccario (@cambecc). Check it out below.</p>
+
+<p></p>
+
+<h3 id="earth">Earth</h3>
+
+<p><a href="http://earth.nullschool.net/">&ldquo;A visualization of global weather conditions forecast by supercomputers updated every three hours&rdquo;</a></p>
+
+<blockquote>
+<p>Note: be sure to click on the globe and move the earth around to see different views!</p>
+</blockquote>
+
+<h3 id="technology-stack">Technology Stack</h3>
+
+<ul>
+<li>The code is publicly available on Github <a href="https://github.com/cambecc/earth">here</a>.</li>
+<li>It&rsquo;s hosted on Amazon S3 and cached with CloudFlare.</li>
+<li>Development tools/libraries: D3.js, when.js, backbone.js, node.js.</li>
+<li>Data from <a href="http://www.naturalearthdata.com/">Natural Earth</a>, converted to TopoJSON format, and <a href="http://www.emc.ncep.noaa.gov/">National Weather Service</a>.</li>
+</ul>
+
+<h3 id="wow">Wow!</h3>
+      </div>
+
+    </div>
+
+    <ul class="pagination">
+      
+      <li><a class="" href="https://danstroot.com/2014/01/03/technology-adoption-curves-vs.-birth-year-and-life-expectancy/"><span class="icon-chevron-circle-left"></span> Previous Post</a></li>
+      
+      
+      <li><a class="" href="https://danstroot.com/2013/12/31/responsive-design-vs.-mobile-first/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next Post <span class="icon-chevron-circle-right"></span></a></li>
+      
+    </ul>
+
+    <hr class="soften">
+
+    
+    
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    
+    
+    var disqus_config = function () {
+      this.page.url = 'https:\/\/danstroot.com\/2014\/01\/02\/supercomputer-weather-visualization-in-a-browser\/';
+      this.page.identifier = 'https:\/\/danstroot.com\/2014\/01\/02\/supercomputer-weather-visualization-in-a-browser\/';
+      this.page.title = 'Supercomputer Weather Visualization in a Browser';
+    };
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'danstroot';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    
+
+  </div>
+
+  
+  <script id="dsq-count-scr" src="//danstroot.disqus.com/count.js" async></script>
+  
+
+<script src='https://danstroot.com/js/loadjs.min.js'></script>
+
+<script>
+  
+  loadjs(['https:\/\/danstroot.com/css/highlight/github.css', 'https:\/\/danstroot.com/js/highlight.pack.js'], {
+    success: function () { hljs.initHighlightingOnLoad(); },
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+<script>
+  loadjs(['https:\/\/danstroot.com/js/service-worker-registration.js'], {
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+
+</body>
+</html>

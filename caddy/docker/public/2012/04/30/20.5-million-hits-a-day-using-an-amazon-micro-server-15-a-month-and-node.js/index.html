@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Dan Stroot &middot; 20.5 Million hits a day using an Amazon Micro server ($15 a month) and Node.js</title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="theme-color" content="#202020">
+
+  
+  <link rel="manifest" href="https://danstroot.com/manifest.json">
+
+  
+  <link rel="stylesheet" href="https://danstroot.com/css/styles.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+
+  
+  <link rel="icon" href="https://danstroot.com/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=152">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=120">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=76">
+  <link rel="apple-touch-icon-precomposed" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=60">
+
+  
+  
+  
+  
+
+  
+  
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-44765020', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+</head>
+
+<body class=" ">
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+
+
+    <div class="myface">
+      <a href="https://danstroot.com/">
+        <img src="https://danstroot.com/img/face_sm.jpg" srcset="https://danstroot.com/img/face_lg.jpg 2x" alt="Dan Stroot" height="150" width="150">
+        <i class="icon-home"></i>
+      </a>
+    </div>
+
+    <div class="sidebar-about">
+      <a href="https://danstroot.com/"><h1>Dan Stroot</h1></a>
+      <p class="lead">I love building things. Made in California. Family man, technologist and Hacker News aficionado. Eternally curious.</p>
+    </div>
+
+    <hr class="hr-sidebar">
+
+    
+
+    <a href="https://danstroot.com/about">About</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://danstroot.com/post">Archive</a>
+
+    <hr class="hr-sidebar">
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/dstroot"><span class="icon-github-square"></span></a>
+      <a href="https://www.linkedin.com/in/danstroot"><span class="icon-linkedin-square"></span></a>
+      <a href="https://www.facebook.com/dan.stroot"><span class="icon-facebook-square"></span></a>
+      <a href="https://twitter.com/danstroot"><span class="icon-twitter-square"></span></a>
+      
+      </li>
+    </ul>
+
+    
+
+    <p class="small">Copyright &copy; 2017</p>
+
+  </div>
+</div>
+
+
+  <div class="content container">
+    <div class="post">
+
+      <h1 class="post-title">20.5 Million hits a day using an Amazon Micro server ($15 a month) and Node.js</h1>
+
+      
+      <span class="post-date">April 30, 2012 &middot; <span class="icon-clock-o"></span> 3 minute read &middot; <a href="https://danstroot.com/2012/04/30/20.5-million-hits-a-day-using-an-amazon-micro-server-15-a-month-and-node.js/#disqus_thread">Comments</a>  
+      
+      <br/>
+      
+      </span>
+
+      
+      <div class="post-content">
+      <p>I have been building a website recently just to get current with the latest web technologies and scaling.  I  saw this post on Hacker News: <a href="http://www.ewanleith.com/blog/900/10-million-hits-a-day-with-wordpress-using-a-15-server" title="10 Million hits a day with WordPress using a $15 server">10 Million hits a day with WordPress using a $15 server</a> and was intrigued.  It was time to benchmark one of my own applications (<a href="http://www.vizilinkz.com/" title="ViziLinkz">vizilinkz.com</a>) since it also runs on an Amazon Micro server for now as my development/production machine.</p>
+
+<p></p>
+
+<p>First, let’s get this out of the way. Amazon will throttle your micro server into the ground if you actually ran this level of traffic for an extended period of time. This <a href="http://gregsramblings.com/2011/02/07/amazon-ec2-micro-instance-cpu-steal/">article </a>explains it rather well. However this experiment still illustrates what is possible with this level of virtual hardware. If you actually have high levels of traffic then you already know a micro instance is not for you.</p>
+
+<p>I’m using an Amazon Linux x86 machine image (ami-31814f58) and the machine type is a “t1.micro” instance ($0.02 per hour – two cents an hour!). This is how Amazon describes a micro instance:</p>
+
+<ul>
+<li>613 MB memory</li>
+<li>Up to 2 EC2 Compute Units (for short periodic bursts)</li>
+<li>EBS storage only</li>
+<li>32-bit or 64-bit platform</li>
+<li>I/O Performance: Low</li>
+<li>API name: t1.micro</li>
+</ul>
+
+<p>I am using a 32 bit instance. I installed MySQL and compiled Node.js and then installed my web application – that’s it. Took me about an hour because I also installed phpMyAdmin and I hadn’t done it in a while.</p>
+
+<p>Some notes before we start testing – my Node.js application uses the Express framework and in the docs I noticed something interesting:</p>
+
+<p>To alter the environment we can set the NODE_ENV environment variable, for example: <code>$ NODE_ENV=production node app.js</code></p>
+
+<p>This is very important, as many caching mechanisms are only enabled when in production.</p>
+
+<p>So I set environment to production and we are ready to start testing. Like the original WordPress post I am also using blitz.io and therefore had to do some housekeeping setting my application to serve their API key (clever since it prevents you from using blitz.io as a DoS tool). Once all that was done I was ready to run my first load test. I wasn’t really sure what to expect.</p>
+
+<p><strong>Let’s run a blitz.io “rush” to see how we’re doing:</strong></p>
+
+<p><a href="http://www.wanderingcio.com/wp-content/uploads/2012/04/15-1.png"><img src="http://www.wanderingcio.com/wp-content/uploads/2012/04/15-1-300x140.png" alt="Hit Rate" title="15-1" /></a></p>
+
+<p><em>(click the image to see a full size version)</em></p>
+
+<p>Note that blitz.io ramps up from 0 to 250 users, and our peak response rate was 238 hits per second as you can see above. This peak rate translates into <strong>20,563,200 hits per day</strong>!</p>
+
+<p>Throughout the test our response rates looked pretty stable and averaged 13ms for the duration of the test:</p>
+
+<p><a href="http://www.wanderingcio.com/wp-content/uploads/2012/04/15-2.png"><img src="http://www.wanderingcio.com/wp-content/uploads/2012/04/15-2-300x139.png" alt="Response Times" title="15-2" /></a></p>
+
+<p><em>(click the image to see a full size version)</em></p>
+
+<p>Interestingly blitz.io calculates your <em>average</em> hit rate during the test and uses that to estimate hits per day rather than your peak rate. I’m not sure why they do it that way. Here is their summary:</p>
+
+<p><a href="http://www.wanderingcio.com/wp-content/uploads/2012/04/15-3.png"><img src="http://www.wanderingcio.com/wp-content/uploads/2012/04/15-3-300x44.png" alt="Summary" title="15-3" /></a></p>
+
+<p><em>(click the image to see a full size version)</em></p>
+
+<p>So what did we learn here? That Node.js on an Amazon micro instance can run really well?  Well yes I suppose, and this bodes well for true scalability to larger machines and to machine clusters in the future. But the real meat here is the confluence of several trends: ever more efficient web delivery (Nginx, Node.js, Varnish, etc.) , the move away from serving pages to serving data, and finally cloud infrastructure, means it is exceptionally easy to build highly scalable web sites for a very very small investment compared to several years ago.</p>
+
+<p>This has profound implications for &ldquo;corporate IT&rdquo;!</p>
+
+<p><em>References</em></p>
+
+<ul>
+<li><a href="http://www.ewanleith.com/blog/900/10-million-hits-a-day-with-wordpress-using-a-15-server">http://www.ewanleith.com/blog/900/10-million-hits-a-day-with-wordpress-using-a-15-server</a></li>
+<li><a href="http://gregsramblings.com/2011/02/07/amazon-ec2-micro-instance-cpu-steal/">http://gregsramblings.com/2011/02/07/amazon-ec2-micro-instance-cpu-steal/</a></li>
+</ul>
+      </div>
+
+    </div>
+
+    <ul class="pagination">
+      
+      <li><a class="" href="https://danstroot.com/2012/05/02/apple-reaches-for-greatness-without-apology/"><span class="icon-chevron-circle-left"></span> Previous Post</a></li>
+      
+      
+      <li><a class="" href="https://danstroot.com/2012/01/03/transparency-wins/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next Post <span class="icon-chevron-circle-right"></span></a></li>
+      
+    </ul>
+
+    <hr class="soften">
+
+    
+    
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    
+    
+    var disqus_config = function () {
+      this.page.url = 'https:\/\/danstroot.com\/2012\/04\/30\/20.5-million-hits-a-day-using-an-amazon-micro-server-15-a-month-and-node.js\/';
+      this.page.identifier = 'https:\/\/danstroot.com\/2012\/04\/30\/20.5-million-hits-a-day-using-an-amazon-micro-server-15-a-month-and-node.js\/';
+      this.page.title = '20.5 Million hits a day using an Amazon Micro server ($15 a month) and Node.js';
+    };
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'danstroot';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    
+
+  </div>
+
+  
+  <script id="dsq-count-scr" src="//danstroot.disqus.com/count.js" async></script>
+  
+
+<script src='https://danstroot.com/js/loadjs.min.js'></script>
+
+<script>
+  
+  loadjs(['https:\/\/danstroot.com/css/highlight/github.css', 'https:\/\/danstroot.com/js/highlight.pack.js'], {
+    success: function () { hljs.initHighlightingOnLoad(); },
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+<script>
+  loadjs(['https:\/\/danstroot.com/js/service-worker-registration.js'], {
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+
+</body>
+</html>

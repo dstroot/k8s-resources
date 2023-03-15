@@ -1,0 +1,53 @@
+# kind: Deployment
+# apiVersion: extensions/v1beta1
+# metadata:
+#   name: busybox
+# spec:
+#   containers:
+#     - name: test-container
+#       image: gcr.io/google_containers/busybox
+#       # command: [ "/bin/sh" ]
+#       # command: [ "/bin/sh", "cat config/.env" ]
+#       volumeMounts:
+#         - name: config-volume
+#           mountPath: /config
+#   volumes:
+#     - name: config-volume
+#       configMap:
+#         name: configuration
+#
+#
+
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: busybox
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+      - name: busybox
+        stdin: true
+        tty: true
+        # Do not use the `latest` tag in production. It creates ambiguity.
+        # if you do for some reason, then make sure you set imagePullPolicy 
+        # to `Always`, to make sure Kubernetes always pulls the latest 
+        # version when creating a pod:
+        image: gcr.io/google_containers/busybox
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 50m
+            memory: 50Mi
+        # Make sure your containers write data only to volumes. You can use
+        # tmpfs for small (tmpfs stores everything in memory) temporary files:
+        volumeMounts:
+        - mountPath: /tmp
+          name: tempdir
+      volumes:
+      - name: tempdir
+        emptyDir: {}

@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  # namespace: default
+  name: auth
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    # Notice that we are configuring Træfɪk to strip the prefix from 
+    # the url path with the traefik.frontend.rule.type annotation if
+    # you are using paths!
+    # traefik.frontend.rule.type: pathprefixstrip
+spec:
+  rules:
+    - host: auth.thepishoppe.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: echoserver
+            servicePort: 8080
+        # - path: /traefik
+        #   backend:
+        #     serviceName: traefik-console
+        #     servicePort: 8080
+        # - path: /echo
+        #   backend:
+        #     serviceName: echoserver
+        #     servicePort: 8080

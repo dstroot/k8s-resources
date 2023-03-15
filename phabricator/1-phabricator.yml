@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phabricator
+spec:
+  selector:
+    app: phabricator
+  type: LoadBalancer
+  ports:
+  - port: 80 # service port
+    targetPort: http-server  # port on container
+    protocol: TCP
+----
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: phabricator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phabricator
+  template:
+    metadata:
+      name: phabricator
+      labels:
+        app: phabricator
+    spec:
+      containers:
+      - name: phabricator
+        image: dstroot/phabricator
+        resources:  # http://kubernetes.io/docs/user-guide/compute-resources/
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: MYSQL_SERVICE_HOST
+          value: mysql
+        - name: MYSQL_SERVICE_PORT
+          value: "3306"
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: password
+        ports:
+        - name: http-server
+          containerPort: 80

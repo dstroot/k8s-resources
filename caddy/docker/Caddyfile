@@ -1,0 +1,22 @@
+:3000 {
+    root /var/www/html
+        minify
+        gzip
+
+        header /js /css /images Cache-Control "max-age=2592000"
+
+        header / {
+                X-Frame-Options DENY
+                Referrer-Policy "same-origin"
+                X-XSS-Protection "1;mode=block"
+        }
+
+        log / stdout "{>Cf-Connecting-Ip} - [{when}] \"{method} {uri} {proto}\" {status} {size} \"{>Referer}\" \"{>User-Agent}\""
+        errors stdout
+
+        git github.com/dstroot/my-hugo-blog /var/www/app {
+                hook /webhook secret_here
+                then git submodule update --init --recursive
+                then hugo -v --destination=/var/www/html
+        }
+}

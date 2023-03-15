@@ -1,0 +1,64 @@
+# -- pgadmin ingress --
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pgadmin
+  namespace: default
+spec:
+  rules:
+  - host: pgadmin.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: pgadmin
+          servicePort: 80
+---
+# -- pgadmin service
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgadmin
+  labels:
+    app: pgadmin
+spec:
+  selector:
+    app: pgadmin
+  # type: LoadBalancer
+  # NOTE LoadBalancer or NodePort would be used if we did not use Traefik for ingress
+  ports:
+  - port: 80 # service port
+    targetPort: 5050  # port on container
+    protocol: TCP
+---
+# -- pgadmin deployment --
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pgadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgadmin
+  template:
+    metadata:
+      name: pgadmin
+      labels:
+        app: pgadmin
+    spec:
+      containers:
+      - name: pgadmin
+        image: meedan/pgadmin:4
+        imagePullPolicy: Always
+        resources:  # http://kubernetes.io/docs/user-guide/compute-resources/
+          requests:
+            cpu: 100m
+            memory: 50Mi
+        env:
+        - name: PGADMIN_USER
+          value: admin@pgadmin.org
+        - name: PGADMIN_PASSWORD
+          value: pgadmin  
+        ports:
+        - containerPort: 5050

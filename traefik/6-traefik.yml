@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cheeses
+  annotations:
+    traefik.frontend.rule.type: pathprefixstrip
+    # A note for any GKE users: To prevent the default L7 load balancer 
+    # ingress controller from picking up this configuration, I set the 
+    # kubernetes.io/ingress.class annotation to traefik. Google’s ingress 
+    # controller will ignore any ingresses whose class is not set to gcp.
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  tls:
+  - secretName: traefik-cert
+  rules:
+  - host: cheeses.local
+    http:
+      paths:
+      - path: /stilton
+        backend:
+          serviceName: stilton
+          servicePort: http
+      - path: /cheddar
+        backend:
+          serviceName: cheddar
+          servicePort: http
+      - path: /wensleydale
+        backend:
+          serviceName: wensleydale
+          servicePort: http

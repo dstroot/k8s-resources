@@ -1,0 +1,525 @@
+@charset "UTF-8";
+/**
+ * Colors
+ */
+/**
+ * Fonts
+ */
+/**
+ * Breakpoints
+ */
+/**
+ * The Basics
+ */
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  box-sizing: border-box; }
+  @media (min-width: 50rem) {
+    html {
+      font-size: 1.25rem; } }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #595959;
+  background-color: #fff;
+  /* Better Font Rendering =========== */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none; }
+
+a {
+  color: #55595c;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out; }
+  a:hover, a:focus {
+    outline-width: 0;
+    text-decoration: none;
+    border-bottom: 1px dotted;
+    border-bottom-color: inherit; }
+
+img {
+  display: block;
+  max-width: 100%;
+  margin: 0 0 1rem;
+  border-radius: 6px; }
+
+/**
+ * Tables
+ */
+table {
+  width: 100%;
+  border-collapse: collapse; }
+
+td,
+th {
+  padding: .25rem .5rem; }
+  td img,
+  th img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
+
+/**
+ * Icomoon Fonts
+ */
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon.eot?y9uzuy");
+  src: url("../fonts/icomoon.eot?y9uzuy#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?y9uzuy") format("truetype"), url("../fonts/icomoon.woff?y9uzuy") format("woff"), url("../fonts/icomoon.svg?y9uzuy#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -5%;
+  /* Better Font Rendering =========== */ }
+
+.icon-home:before {
+  content: "\f015"; }
+
+.icon-clock-o:before {
+  content: "\f017"; }
+
+.icon-tag:before {
+  content: "\f02b"; }
+
+.icon-twitter-square:before {
+  content: "\f081"; }
+
+.icon-facebook-square:before {
+  content: "\f082"; }
+
+.icon-linkedin-square:before {
+  content: "\f08c"; }
+
+.icon-github-square:before {
+  content: "\f092"; }
+
+.icon-chevron-circle-left:before {
+  content: "\f137"; }
+
+.icon-chevron-circle-right:before {
+  content: "\f138"; }
+
+.icon-chevron-circle-up:before {
+  content: "\f139"; }
+
+/**
+ *  Typography
+ */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .5rem;
+  margin-top: .5rem;
+  font-weight: 300;
+  line-height: 1.25; }
+
+h1 {
+  font-size: 2rem; }
+
+h2 {
+  font-size: 1.75rem; }
+
+h3 {
+  font-size: 1.5rem; }
+
+h4 {
+  font-size: 1.25rem; }
+
+h5, h6 {
+  font-size: 1rem; }
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem; }
+
+strong {
+  font-weight: 600; }
+
+ul, ol, dl {
+  margin-top: 0;
+  margin-bottom: 1rem; }
+
+dt {
+  font-weight: bold; }
+
+dd {
+  margin-bottom: .5rem; }
+
+abbr {
+  font-size: 85%;
+  font-weight: bold;
+  color: #555;
+  text-transform: uppercase; }
+  abbr[title] {
+    cursor: help;
+    border-bottom: 1px dotted #999999; }
+
+blockquote {
+  padding: 1.5rem;
+  margin: 0 0 1rem 0;
+  /* TRBL */
+  color: #000;
+  background-color: #ededed;
+  font-style: italic;
+  border-right: 0.4rem solid #999999; }
+  blockquote p:last-child {
+    margin-bottom: 0; }
+  blockquote cite {
+    display: inline-block;
+    font-size: 80%;
+    font-style: normal;
+    padding-left: 2rem; }
+  @media (min-width: 30em) {
+    blockquote {
+      padding-right: 5rem;
+      padding-left: 1.25rem; } }
+
+a[href^="#fn:"],
+a[href^="#fnref:"] {
+  display: inline-block;
+  margin-left: .1rem;
+  font-weight: bold; }
+
+.footnotes {
+  margin-top: 2rem;
+  font-size: 85%; }
+
+.small {
+  font-size: .7rem;
+  font-weight: 100;
+  margin: 0; }
+
+.sources > a {
+  font-size: 80%;
+  margin: 0 1rem; }
+  .sources > a:before {
+    content: "• "; }
+
+/**
+ * Code
+ */
+code,
+pre {
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+code {
+  padding: 0.2em 0.4em;
+  overflow: auto;
+  font-size: 75%;
+  line-height: 1.45;
+  background-color: #f8f8f8;
+  color: #d14;
+  border-radius: 3px; }
+
+/**
+ * Layout
+ */
+.container {
+  max-width: 38rem;
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+  margin-left: auto;
+  margin-right: auto; }
+
+.content {
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
+
+@media (min-width: 50rem) {
+  .content {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    max-width: 38rem;
+    margin-left: 18rem;
+    margin-right: 2rem; } }
+
+@media (min-width: 60rem) {
+  .content {
+    margin-left: 20rem;
+    margin-right: 4rem; } }
+
+/**
+ * Posts and pages
+ *
+  * Each page is wrapped in `.page` and is only used on the page layout.
+  * Each post is wrapped in `.post` and is used on default and post layouts.
+ */
+.page,
+.post {
+  margin-bottom: 2rem; }
+
+.post > h1, h2, h3, h4, h5, h6 {
+  color: #000; }
+
+.post-content > p > a,
+.post-content > li > a {
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px dotted;
+  border-bottom-color: inherit; }
+
+.page-title,
+.post-title,
+.post-title a {
+  color: #000; }
+
+.page-title,
+.post-title {
+  margin-top: 0; }
+
+.post-date {
+  display: block;
+  margin-top: -.5rem;
+  margin-bottom: 1rem;
+  color: #999999;
+  font-size: .8rem;
+  font-weight: 300; }
+
+.post-date > a {
+  margin-top: -.5rem;
+  margin-bottom: 1rem;
+  color: #999999;
+  font-size: .8rem;
+  font-weight: 300; }
+
+/**
+ * Related Posts
+ */
+/**
+ * Super lightweight (HTML-wise) blog pagination.
+ */
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  width: 100%; }
+
+.pagination > li {
+  display: inline;
+  height: 2rem;
+  line-height: 2rem; }
+
+.pagination > li:first-child > a {
+  position: relative;
+  float: left;
+  color: #999999;
+  padding: 0 10px; }
+
+.pagination > li:last-child > a {
+  position: relative;
+  float: right;
+  text-align: right;
+  color: #999999;
+  padding: 0 10px; }
+
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  display: none; }
+
+@media (min-width: 50rem) {
+  .pagination > li {
+    font-size: 1.25rem;
+    height: 2.5rem;
+    line-height: 2.5rem; } }
+
+/*
+ * Sidebar
+ *
+ * Flexible banner for housing site name, intro, and "footer" content. Starts
+ * out above content in mobile and later moves to the side with wider viewports.
+ */
+.myface > a {
+  border-bottom: none; }
+
+.myface {
+  position: relative;
+  display: block; }
+
+.myface img {
+  display: none;
+  transition: opacity .2s linear;
+  margin-left: auto;
+  margin-right: auto; }
+
+.myface:hover img {
+  opacity: .65; }
+
+.myface i {
+  position: absolute;
+  display: none;
+  text-align: center;
+  top: 50%;
+  left: 0;
+  right: 0;
+  font-size: 4rem;
+  color: #fff;
+  text-shadow: 0 0 3rem rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity .2s linear;
+  transition-delay: .05s; }
+
+.myface:hover i {
+  opacity: 1; }
+
+.sidebar {
+  text-align: center;
+  padding: .5rem;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: #202020; }
+
+@media (min-width: 50rem) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 16rem; }
+  .sidebar-about img {
+    display: block !important; }
+  .sidebar-about p {
+    display: block !important; }
+  .myface img {
+    display: block !important; }
+  .myface i {
+    display: block !important; } }
+
+/* Sidebar links */
+.sidebar a {
+  color: rgba(255, 255, 255, 0.5); }
+
+/* About section */
+.sidebar-about h1 {
+  margin-top: 0;
+  font-size: 2.5rem;
+  font-weight: 200; }
+
+.sidebar-about p {
+  display: none;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 200;
+  letter-spacing: .04em; }
+
+.sidebar-about img {
+  display: none;
+  margin-left: auto;
+  margin-right: auto; }
+
+/* Sidebar nav */
+.sidebar-nav {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+
+.sidebar-nav-item {
+  display: block;
+  font-size: 2.5rem;
+  letter-spacing: -1px;
+  margin: 0; }
+
+/* Sticky sidebar
+ *
+ * Add the `sidebar-sticky` class to the sidebar's container to affix it the
+ * contents to the bottom of the sidebar in tablets and up.
+ */
+@media (min-width: 50rem) {
+  .sidebar-sticky {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem; } }
+
+/**
+ * Faded out hr
+ */
+.soften {
+  margin-top: 1.5rem;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.75), transparent); }
+
+.hr-sidebar {
+  border: 0;
+  height: 1px;
+  width: 70%;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)); }
+
+/**
+ *  Blog Archives
+ */
+.blog-archives article {
+  margin-left: 0;
+  padding-left: 4em;
+  position: relative;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAABCAYAAACsXeyTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQIHWNIS0sr/v//PwMMDzY+ADqMahlW4J91AAAAAElFTkSuQmCC") bottom left repeat-x; }
+
+.blog-archives article:last-child {
+  background: none; }
+
+.blog-archives > h1 {
+  color: #bababa;
+  display: inline-block;
+  position: relative; }
+
+article > h2 {
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin: .5em 0 .5rem .5rem;
+  /* TRBL */
+  display: inline-block; }
+
+.blog-archives time {
+  position: absolute;
+  text-align: right;
+  left: .5rem;
+  top: .7rem;
+  font-size: .8rem;
+  color: #bababa;
+  display: inline-block;
+  text-transform: uppercase; }
+
+@media (min-width: 50rem) {
+  .blog-archives article {
+    margin-left: 2em;
+    padding-left: 4.5em; }
+  article > h2 {
+    font-size: 1.3rem; }
+  .blog-archives time {
+    top: .8rem;
+    font-size: 1rem; } }
+
+.button {
+  display: inline-block;
+  font-weight: 500;
+  color: #999999;
+  padding: 0 10px;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: .8rem;
+  vertical-align: middle; }
+
+.button:hover {
+  border: 1px solid #bababa; }
+
+.button-disabled {
+  opacity: 0.4; }
+
+.button-disabled:hover {
+  color: inherit; }

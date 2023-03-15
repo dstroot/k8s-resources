@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stilton
+spec:
+  ports:
+  - name: http
+    targetPort: 80
+    port: 80
+  selector:
+    app: cheese
+    task: stilton
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cheddar
+spec:
+  ports:
+  - name: http
+    targetPort: 80
+    port: 80
+  selector:
+    app: cheese
+    task: cheddar
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wensleydale
+  annotations:
+    # Annotations can be used on the Kubernetes service to override default behaviour
+    traefik.backend.circuitbreaker: "NetworkErrorRatio() > 0.5"
+    traefik.backend.loadbalancer.method: drr   # override the default wrr load balancer algorithm
+    traefik.backend.loadbalancer.sticky: "true"  # enable backend sticky sessions
+spec:
+  ports:
+  - name: http
+    targetPort: 80
+    port: 80
+  selector:
+    app: cheese
+    task: wensleydale

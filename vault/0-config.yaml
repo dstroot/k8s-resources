@@ -1,0 +1,30 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: vault-config
+  namespace: default
+data:
+  vault.hcl: |
+    backend "file" {
+      path = "/vault/file"
+    }
+
+    // To configure the listener to use a CA certificate, concatenate the
+    // primary certificate and the CA certificate together. The primary
+    // certificate should appear first in the combined file.
+    // TLS verification is falling because your self signed certificate
+    // has a common name which does not match what the host is. The TLS
+    // client is connecting to the server at "127.0.0.1:8200", but the
+    // CN of the certificate is some other hostname "foo.com". You can
+    // use the -tls-skip-verify to avoid this error, but for production
+    // you may want to generate a correctly signed cert!
+    listener "tcp" {
+     address = "127.0.0.1:8200"
+     tls_key_file = "/etc/vault/tls/vault.key"
+     tls_cert_file = "/etc/vault/tls/vault.crt"
+    }
+
+    telemetry {
+      statsd_address = "127.0.0.1:9125"
+      disable_hostname = true
+    }

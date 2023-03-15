@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis-exporter
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-exporter
+      # If we annotate the pod properly then prometheus will
+      # discover it and automatically scrape it. Cool!
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9121"
+    spec:
+      containers:
+      - name: redis-exporter
+        image: 21zoo/redis_exporter:0.5
+        # imagePullPolicy: Always  # IfNotPresent
+        # env:
+        # - name: REDIS_PASSWORD
+        #   value: yoursecretpaswd
+        ports:
+        - containerPort: 9121
+          protocol: TCP
+        args:
+        - "--redis.addr"
+        - "redis:6379"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi

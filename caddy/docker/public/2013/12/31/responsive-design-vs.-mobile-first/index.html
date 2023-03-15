@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Dan Stroot &middot; Responsive Design vs. Mobile-First</title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="theme-color" content="#202020">
+
+  
+  <link rel="manifest" href="https://danstroot.com/manifest.json">
+
+  
+  <link rel="stylesheet" href="https://danstroot.com/css/styles.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+
+  
+  <link rel="icon" href="https://danstroot.com/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=152">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=120">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=76">
+  <link rel="apple-touch-icon-precomposed" href="http://www.gravatar.com/avatar/b6e0ed5e10ea91f67808629f4ae109f2.png?s=60">
+
+  
+  
+  
+  
+
+  
+  
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-44765020', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+</head>
+
+<body class=" ">
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+
+
+    <div class="myface">
+      <a href="https://danstroot.com/">
+        <img src="https://danstroot.com/img/face_sm.jpg" srcset="https://danstroot.com/img/face_lg.jpg 2x" alt="Dan Stroot" height="150" width="150">
+        <i class="icon-home"></i>
+      </a>
+    </div>
+
+    <div class="sidebar-about">
+      <a href="https://danstroot.com/"><h1>Dan Stroot</h1></a>
+      <p class="lead">I love building things. Made in California. Family man, technologist and Hacker News aficionado. Eternally curious.</p>
+    </div>
+
+    <hr class="hr-sidebar">
+
+    
+
+    <a href="https://danstroot.com/about">About</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://danstroot.com/post">Archive</a>
+
+    <hr class="hr-sidebar">
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/dstroot"><span class="icon-github-square"></span></a>
+      <a href="https://www.linkedin.com/in/danstroot"><span class="icon-linkedin-square"></span></a>
+      <a href="https://www.facebook.com/dan.stroot"><span class="icon-facebook-square"></span></a>
+      <a href="https://twitter.com/danstroot"><span class="icon-twitter-square"></span></a>
+      
+      </li>
+    </ul>
+
+    
+
+    <p class="small">Copyright &copy; 2017</p>
+
+  </div>
+</div>
+
+
+  <div class="content container">
+    <div class="post">
+
+      <h1 class="post-title">Responsive Design vs. Mobile-First</h1>
+
+      
+      <span class="post-date">December 31, 2013 &middot; <span class="icon-clock-o"></span> 3 minute read &middot; <a href="https://danstroot.com/2013/12/31/responsive-design-vs.-mobile-first/#disqus_thread">Comments</a>  
+      
+      <br/>
+      
+      </span>
+
+      
+      <div class="post-content">
+      <p>I have heard some people speak of &ldquo;mobile-first&rdquo; and &ldquo;responsive design&rdquo; interchangeably making them sound as if they were one and the same.  However I think there are some subtle differences.  I believe responsive design is the broadest possible definition. It says to me that we are going to target all platforms, screen sizes, pixel densities, etc.  It means that the user experience will be custom tailored to the exact device you just happen to be viewing it with. This should be our ulimate goal, right?</p>
+
+<p></p>
+
+<p>&ldquo;Mobile-first&rdquo; is a narrower definition and implies that the majority of the design effort is going to be geared towards the mobile experience.  But there are a lot of other things it doesn&rsquo;t clarify such as:</p>
+
+<ul>
+<li>Definition of &ldquo;Mobile&rdquo; - aren&rsquo;t smartphones, tablets and laptops <strong>all</strong> mobile? Do we really mean &ldquo;Smartphone-first&rdquo;?</li>
+<li>&ldquo;Mobile Only&rdquo; vs &ldquo;Mobile First&rdquo; - what will the support level be on &ldquo;non-mobile&rdquo; devices?</li>
+</ul>
+
+<p>The second point is interesting because the the first wave of responsive design was focused on taking websites designed for a large screen and simplifying and stripping them down so they would &ldquo;fit&rdquo; and work well on a phone.</p>
+
+<p>If we now start with a &ldquo;mobile-first&rdquo; design how should we <em>add to it</em> to create the desktop experience?  It seems easier to start with something a little more complex and then simplify it rather than start with something simple and try to add complexity to it.  Said another way if you distilled your site to work great on a smartphone then what are you going to add back? That&rsquo;s one of the tough aspects of responsive design.</p>
+
+<p>When people first started using the term mobile-first I think some meant that instead of starting with a desktop design and then progressively degrading it to work on smaller and smaller screens we should start with a highly optimized mobile site and then progressively enhance it for larger screens.  This model makes sense as long as we are actually thinking about, and designing for, all screen sizes.</p>
+
+<blockquote>
+<p>Side note: One of the best aspects of mobile design is the
+performance tuning required to make a site run well on a smartphone
+because it pays speed dividends on <strong>every device, everywhere</strong>.</p>
+</blockquote>
+
+<p>I believe in the mobile-first progressive enhancement approach but I&rsquo;d still rather say we doing responsive design over mobile-first because to me it says we are going make our site work great everywhere, for everyone.</p>
+
+<script>
+
+  var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+  };
+
+  if( !(isMobile.any()) ) {
+    document.write('<div class="hidden-xs hidden-sm"><h3>See for yourself:</h3><div style="background-image:url(&#39;/assets/img/iphone5.png&#39;);background-repeat:no-repeat;margin: 0px 0px 0px 0px;padding: 145px 0px 0px 27px;width:375px;height:820px"><iframe src="http://danstroot.com" width="320" height="550"></iframe></div></div>');
+  }
+</script>
+      </div>
+
+    </div>
+
+    <ul class="pagination">
+      
+      <li><a class="" href="https://danstroot.com/2014/01/02/supercomputer-weather-visualization-in-a-browser/"><span class="icon-chevron-circle-left"></span> Previous Post</a></li>
+      
+      
+      <li><a class="" href="https://danstroot.com/2013/10/30/apples-astounding-capital-expenditures/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next Post <span class="icon-chevron-circle-right"></span></a></li>
+      
+    </ul>
+
+    <hr class="soften">
+
+    
+    
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    
+    
+    var disqus_config = function () {
+      this.page.url = 'https:\/\/danstroot.com\/2013\/12\/31\/responsive-design-vs.-mobile-first\/';
+      this.page.identifier = 'https:\/\/danstroot.com\/2013\/12\/31\/responsive-design-vs.-mobile-first\/';
+      this.page.title = 'Responsive Design vs. Mobile-First';
+    };
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'danstroot';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+    
+
+  </div>
+
+  
+  <script id="dsq-count-scr" src="//danstroot.disqus.com/count.js" async></script>
+  
+
+<script src='https://danstroot.com/js/loadjs.min.js'></script>
+
+<script>
+  
+  loadjs(['https:\/\/danstroot.com/css/highlight/github.css', 'https:\/\/danstroot.com/js/highlight.pack.js'], {
+    success: function () { hljs.initHighlightingOnLoad(); },
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+<script>
+  loadjs(['https:\/\/danstroot.com/js/service-worker-registration.js'], {
+    error: function (pathsNotFound) { console.log('file not found'); }
+  });
+</script>
+
+
+</body>
+</html>

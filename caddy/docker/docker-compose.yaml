@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+    # traefik:
+    #     image: traefik
+    #     ports:
+    #         - "80:80"
+    #         - "443:443"
+    #     volumes:
+    #         - /var/run/docker.sock:/var/run/docker.sock
+    #         - /home/zeta/new-setup/traefik.toml:/traefik.toml
+    #         - /home/zeta/new-setup/certs/:/etc/traefik/certs
+    #         - /home/zeta/new-setup/traefik-logs/:/etc/traefik/log
+    #     restart: always
+    #     labels:
+    #         - "traefik.backend=traefik"
+    #         - "traefik.port=8080"
+    #         - "traefik.frontend.rule=Host:traefik.zeta.pm"
+    blog:
+        ports:
+            - "3000:3000"
+        image: dstroot/caddy
+        # restart: never
+        # volumes:
+        #     - /home/zeta/new-setup/blog-web/cache:/var/www/html
+        # labels:
+        #     - "traefik.backend=blog"
+        #     - "traefik.frontend.rule=Host:zeta.pm"

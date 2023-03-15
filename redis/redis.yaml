@@ -1,0 +1,94 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: master
+        tier: backend
+    spec:
+      containers:
+      - name: redis-commander
+        image: tenstartups/redis-commander
+        # imagePullPolicy: Always  # IfNotPresent
+        # env:
+        # - name: REDIS_HOST
+        #   value: localhost
+        ports:
+        - containerPort: 8081
+          protocol: TCP
+      - name: redis
+        image: redis:3.2.1-alpine
+        command:
+        - "redis-server"
+        args:
+        - "/etc/redis/redis.conf"
+        - "--protected-mode"
+        - "no"
+        # securityContext:
+        #   sysctlParameters:
+        #     - variable: net.core.somaxconn
+        #       value: 1024
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - name: redis
+          containerPort: 6379
+          # protocol: TCP
+        volumeMounts:
+        - name: redis-master-storage
+          # if redis persistence is enabled, data is stored in /data
+          mountPath: /data
+        - name: config-volume
+          mountPath: /etc/redis
+      volumes:
+      - name: redis-master-storage
+        gcePersistentDisk:
+          # This GCE persistent disk must already exist
+          pdName: redis-master
+          fsType: ext4
+      - name: config-volume
+        configMap:
+          name: redis-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    app: redis
+    role: master
+    tier: backend
+spec:
+  type: NodePort
+  ports:
+  - port: 6379  # service port
+    targetPort: redis # container port
+    # protocol: TCP
+  selector:
+    app: redis
+    role: master
+    tier: backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-commander
+  labels:
+    app: redis-commander
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80  # service port
+    targetPort: 8081 # container port
+    # protocol: TCP
+  selector:
+    app: redis
+    role: master
+    tier: backend
